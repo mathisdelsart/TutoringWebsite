@@ -1,0 +1,24 @@
+{
+  "slug": "jean-dupont",
+  "nom": "Jean Dupont",
+  "matieres": ["Mathématiques", "Physique"],
+  "niveaux": ["Collège", "Lycée", "Supérieur"],
+  "ville": "Lyon",
+  "zone": "Lyon et proche banlieue",
+  "accroche": "Cours particuliers de mathématiques et physique avec une pédagogie moderne et des résultats prouvés. Rejoins plus de 150 élèves qui ont déjà franchi le cap !",
+  "services": [
+    "Cours de mathématiques niveau secondaire",
+    "Préparation aux examens (Brevet, Bac)",
+    "Remise à niveau et soutien scolaire",
+    "Aide aux devoirs et méthodologie"
+  ],
+  "methode": "J'adapte mes cours à chaque élève en identifiant ses difficultés et en utilisant des exemples concrets. Mon objectif : rendre les sciences accessibles et redonner confiance. Nous avançons à votre rythme avec des exercices progressifs et un suivi personnalisé.",
+  "modalites": ["Cours à domicile", "Cours en ligne"],
+  "disponibilites": "Lundi au Samedi • Flexibilité horaires",
+  "email": "jean.dupont@exemple.fr",
+  "whatsapp": "33612345678",
+  "temoignage": {
+    "texte": "Grâce à Jean, ma fille a repris confiance en maths et a décroché une excellente note au Bac. Pédagogue et patient, je recommande vivement !",
+    "auteur": "Parent d'élève"
+  }
+}
