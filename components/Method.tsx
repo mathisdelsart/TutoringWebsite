@@ -24,7 +24,7 @@ export default function Method({ methode }: MethodProps) {
   ]
 
   return (
-    <section id="methode" className="py-32 relative reveal">
+    <section id="methode" className="py-20 relative reveal">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">

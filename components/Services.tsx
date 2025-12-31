@@ -31,7 +31,7 @@ export default function Services({ services }: ServicesProps) {
   ]
 
   return (
-    <section id="matieres" className="py-32 relative reveal">
+    <section id="matieres" className="py-20 relative reveal">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
@@ -46,7 +46,8 @@ export default function Services({ services }: ServicesProps) {
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className="card p-12 card-hover group"
+              className="card p-12 card-hover group transform transition-all duration-500 hover:scale-105"
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="text-7xl mb-8 inline-block animate-[iconFloat_3s_ease-in-out_infinite]">
                 {subject.icon}

@@ -8,6 +8,7 @@ import Contact from '@/components/Contact'
 import Temoignage from '@/components/Temoignage'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import Navigation from '@/components/Navigation'
+import SmoothScroll from '@/components/SmoothScroll'
 
 interface ProfData {
   slug: string
@@ -80,6 +81,7 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
       
       <AnimatedBackground />
       <Navigation />
+      <SmoothScroll />
       
       <main className="min-h-screen relative z-10">
         <Hero
@@ -88,6 +90,7 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           niveaux={prof.niveaux}
           zone={prof.zone}
           accroche={prof.accroche}
+          modalites={prof.modalites}
         />
         
         <Services services={prof.services} />
@@ -125,39 +128,6 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           </div>
         </footer>
       </main>
-      
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          // Smooth scrolling
-          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            });
-          });
-
-          // Scroll reveal animations
-          const reveals = document.querySelectorAll('.reveal');
-          
-          const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            reveals.forEach(element => {
-              const elementTop = element.getBoundingClientRect().top;
-              const revealPoint = 100;
-              
-              if (elementTop < windowHeight - revealPoint) {
-                element.classList.add('active');
-              }
-            });
-          };
-
-          window.addEventListener('scroll', revealOnScroll);
-          revealOnScroll();
-        `
-      }} />
     </>
   )
 }
