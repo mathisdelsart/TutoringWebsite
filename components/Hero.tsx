@@ -22,7 +22,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
   return (
     <section id="accueil" className="relative min-h-screen flex items-center py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 items-start">
           {/* Texte principal */}
           <div className={`space-y-8 ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <h1 className="text-6xl md:text-7xl font-extrabold leading-[1.1] bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -63,7 +63,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
               </div>
 
               {/* CTA Buttons redesignés */}
-              <div className="flex flex-col sm:flex-row gap-5">
+              <div className="flex flex-col sm:flex-row gap-5 mb-8">
                 <a href="#contact" className="btn-primary group flex-1 justify-center text-lg py-5 relative overflow-hidden">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                   <span className="relative font-bold">Réserver un cours</span>
@@ -72,6 +72,26 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                   <span className="relative font-bold">Voir les témoignages</span>
                 </a>
+              </div>
+
+              {/* Motivational Quote - Stylish */}
+              <div className="relative overflow-hidden rounded-2xl p-6 group">
+                {/* Animated gradient border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl opacity-50 group-hover:opacity-75 blur animate-[pulse_4s_ease-in-out_infinite]"></div>
+                
+                {/* Glassmorphism background */}
+                <div className="relative backdrop-blur-xl bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl border border-white/10 p-6">
+                  {/* Glow effects */}
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/30 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]"></div>
+                  <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-accent/30 rounded-full blur-3xl animate-[float_8s_ease-in-out_infinite]" style={{ animationDelay: '3s' }}></div>
+                  
+                  <div className="text-center relative z-10">
+                    <p className="text-lg italic text-white/90 leading-relaxed font-medium">
+                      “<span className="gradient-text font-bold text-xl">L'excellence</span> n'est pas une destination,<br/>
+                      c'est un <span className="gradient-text font-bold text-xl">voyage continu</span>”
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -111,6 +131,17 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
                   <div className="relative space-y-4">
                     <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs text-textSecondary uppercase tracking-wider mb-1">Modalités</div>
+                        <div className="text-gray-300 font-medium">{modalites.join(' • ')}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center flex-shrink-0 mt-0.5">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -120,17 +151,6 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                       <div>
                         <div className="text-xs text-textSecondary uppercase tracking-wider mb-1">Localisation</div>
                         <div className="text-white font-semibold">{zone}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                      </div>
-                      <div>
-                        <div className="text-xs text-textSecondary uppercase tracking-wider mb-1">Modalités</div>
-                        <div className="text-gray-300 font-medium">{modalites.join(' • ')}</div>
                       </div>
                     </div>
                   </div>

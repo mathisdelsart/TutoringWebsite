@@ -93,9 +93,9 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           modalites={prof.modalites}
         />
         
-        <Services services={prof.services} />
-        
         <Method methode={prof.methode} />
+        
+        <Services services={prof.services} />
         
         <Temoignage temoignage={prof.temoignage} />
         
