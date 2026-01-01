@@ -2,21 +2,21 @@
   "slug": "jean-dupont",
   "nom": "Mathis Delsart",
   "matieres": ["Mathématiques", "Physique"],
-  "niveaux": ["Collège", "Lycée", "Supérieur"],
-  "ville": "Lyon",
-  "zone": "Lyon et proche banlieue",
+  "niveaux": ["Secondaires"],
+  "ville": "Gouy-Lez-Piéton",
+  "zone": "Belgique, Courcelles, Gouy-Lez-Piéton",
   "accroche": "Ingénieur civil en Informatique & IA, fasciné par les mathématiques et la physique. Je t'accompagne avec une pédagogie moderne et des explications claires pour transformer tes difficultés en réussites !",
   "services": [
     "Cours de mathématiques niveau secondaire",
-    "Préparation aux examens (Brevet, Bac)",
+    "Préparation aux examens",
     "Remise à niveau et soutien scolaire",
     "Aide aux devoirs et méthodologie"
   ],
   "methode": "J'adapte mes cours à chaque élève en identifiant ses difficultés et en utilisant des exemples concrets. Mon objectif : rendre les sciences accessibles et redonner confiance. Nous avançons à votre rythme avec des exercices progressifs et un suivi personnalisé.",
   "modalites": ["Cours à domicile", "Cours en ligne"],
   "disponibilites": "Lundi au Samedi • Flexibilité horaires",
-  "email": "jean.dupont@exemple.fr",
-  "whatsapp": "33612345678",
+  "email": "mathis.delsart@gmail.com",
+  "whatsapp": "32468386354",
   "temoignage": {
     "texte": "Grâce à Jean, ma fille a repris confiance en maths et a décroché une excellente note au Bac. Pédagogue et patient, je recommande vivement !",
     "auteur": "Parent d'élève"

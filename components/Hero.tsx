@@ -30,22 +30,22 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
             </h1>
             
             <p className="text-xl md:text-2xl text-textSecondary leading-relaxed">
-              {accroche}
+              Ingénieur civil en Informatique & IA, passionné par l'enseignement. Je te propose une pédagogie moderne et personnalisée pour atteindre tes objectifs et gagner en confiance !
             </p>
 
             {/* Stats Grid avec design qui pète */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <div className="relative card card-hover p-8 text-center border-2 border-primary/30">
+                <div className="group relative overflow-hidden rounded-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/20 to-transparent"></div>
+                  <div className="relative backdrop-blur-sm bg-white/5 card-hover p-8 text-center border border-primary/20">
                     <div className="text-6xl font-extrabold gradient-text mb-2 animate-[iconFloat_3s_ease-in-out_infinite]">150+</div>
                     <div className="text-sm text-textSecondary uppercase tracking-wider font-semibold">Élèves accompagnés</div>
                   </div>
                 </div>
-                <div className="group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent via-orange to-primary opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <div className="relative card card-hover p-8 text-center border-2 border-accent/30">
+                <div className="group relative overflow-hidden rounded-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-orange/20 to-transparent"></div>
+                  <div className="relative backdrop-blur-sm bg-white/5 card-hover p-8 text-center border border-accent/20">
                     <div className="text-6xl font-extrabold gradient-text mb-2 animate-[iconFloat_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>3</div>
                     <div className="text-sm text-textSecondary uppercase tracking-wider font-semibold">Années d'expérience</div>
                   </div>
@@ -54,13 +54,13 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
 
               {/* CTA Buttons redesignés */}
               <div className="flex flex-col sm:flex-row gap-5">
-                <a href="#contact" className="btn-primary group flex-1 justify-center text-lg py-5">
-                  <span className="text-2xl group-hover:scale-125 transition-transform inline-block">🚀</span>
-                  <span className="font-bold">Commencer maintenant</span>
+                <a href="#contact" className="btn-primary group flex-1 justify-center text-lg py-5 relative overflow-hidden">
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                  <span className="relative font-bold">Réserver un cours</span>
                 </a>
-                <a href="#temoignages" className="btn-secondary group flex-1 justify-center text-lg py-5">
-                  <span className="text-2xl group-hover:scale-125 transition-transform inline-block">⭐</span>
-                  <span className="font-bold">Avis élèves</span>
+                <a href="#temoignages" className="btn-secondary group flex-1 justify-center text-lg py-5 relative overflow-hidden">
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                  <span className="relative font-bold">Voir les témoignages</span>
                 </a>
               </div>
             </div>
@@ -72,6 +72,11 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
               {/* Top gradient bar animé */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-secondary via-accent to-orange bg-[length:200%_200%] animate-[gradientSlide_3s_ease_infinite]"></div>
               
+              {/* Profile Name - Large at top */}
+              <div className="text-center mb-6">
+                <h3 className="text-4xl font-extrabold gradient-text">{nom}</h3>
+              </div>
+
               {/* Profile Image */}
               <div className="relative w-full aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 mb-6 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent animate-[shimmer_3s_ease-in-out_infinite] z-10 pointer-events-none"></div>
@@ -86,32 +91,10 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                     target.style.display = 'none'
                   }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-8xl">
-                  🎓
-                </div>
               </div>
 
               {/* Profile Info */}
               <div className="space-y-5">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">{nom}</h3>
-                  <p className="text-textSecondary text-sm leading-relaxed">
-                    🎓 Ingénieur civil Informatique & IA<br/>
-                    ✨ 3 ans d'expérience en enseignement
-                  </p>
-                </div>
-
-                {/* Matières badges */}
-                <div className="flex flex-wrap gap-2">
-                  {matieres.map((matiere) => (
-                    <span
-                      key={matiere}
-                      className="card px-3 py-2 text-sm font-semibold text-indigo-200 transition-all duration-300 hover:bg-primary/40 hover:-translate-y-1"
-                    >
-                      {matiere === 'Mathématiques' ? '🔢' : '⚛️'} {matiere}
-                    </span>
-                  ))}
-                </div>
 
                 {/* Localisation redesignée */}
                 <div className="relative overflow-hidden rounded-xl p-5 bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/30">

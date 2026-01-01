@@ -97,6 +97,8 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
         
         <Method methode={prof.methode} />
         
+        <Temoignage temoignage={prof.temoignage} />
+        
         <Contact
           email={prof.email}
           whatsapp={prof.whatsapp}
@@ -105,8 +107,6 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           modalites={prof.modalites}
           disponibilites={prof.disponibilites}
         />
-        
-        <Temoignage temoignage={prof.temoignage} />
         
         <footer className="relative py-20 border-t border-primary/20">
           <div className="max-w-[1400px] mx-auto px-8 text-center">
@@ -118,8 +118,9 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
             <p className="text-textSecondary mb-8">
               Rejoins les élèves qui ont transformé leurs résultats
             </p>
-            <a href="#contact" className="btn-primary">
-              <span>🚀</span> Réserve ton premier cours
+            <a href="#contact" className="btn-primary relative overflow-hidden group">
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+              <span className="relative">Commence ton parcours</span>
             </a>
             
             <p className="text-textSecondary text-sm mt-12 pt-8 border-t border-primary/10">

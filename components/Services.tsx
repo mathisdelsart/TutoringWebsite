@@ -7,7 +7,6 @@ interface ServicesProps {
 export default function Services({ services }: ServicesProps) {
   const subjects = [
     {
-      icon: '📐',
       title: 'Mathématiques',
       items: [
         'Algèbre et calcul avancé',
@@ -18,7 +17,6 @@ export default function Services({ services }: ServicesProps) {
       ]
     },
     {
-      icon: '⚛️',
       title: 'Physique',
       items: [
         'Mécanique classique et moderne',
@@ -49,10 +47,7 @@ export default function Services({ services }: ServicesProps) {
               className="card p-12 card-hover group transform transition-all duration-500 hover:scale-105"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <div className="text-7xl mb-8 inline-block animate-[iconFloat_3s_ease-in-out_infinite]">
-                {subject.icon}
-              </div>
-              <h3 className="text-4xl font-bold mb-8">{subject.title}</h3>
+              <h3 className="text-4xl font-bold mb-8 gradient-text">{subject.title}</h3>
               <ul className="space-y-3 mb-8">
                 {subject.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
@@ -62,7 +57,7 @@ export default function Services({ services }: ServicesProps) {
                 ))}
               </ul>
               <p className="text-textSecondary font-semibold">
-                📚 Collège • Lycée • Supérieur
+                Niveau Secondaires
               </p>
             </div>
           ))}

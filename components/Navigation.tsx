@@ -22,16 +22,16 @@ export default function Navigation() {
           ∫ MATH·PHYS ∫
         </div>
         <ul className="hidden md:flex gap-12 list-none">
-          {['Accueil', 'Matières', 'Méthode', 'Témoignages', 'Contact'].map((item) => (
-            <li key={item}>
+          {[['Accueil', 'accueil'], ['Matières', 'matieres'], ['Méthode', 'methode'], ['Témoignages', 'temoignages'], ['Contact', 'contact']].map(([label, id]) => (
+            <li key={id}>
               <a
-                href={`#${item.toLowerCase()}`}
+                href={`#${id}`}
                 className="text-white font-medium transition-all duration-300 relative py-2 hover:text-accent hover:[text-shadow:0_0_20px_rgba(236,72,153,0.5)] 
                   before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-0.5 
                   before:bg-gradient-to-r before:from-primary before:to-accent before:transition-all before:duration-300 
                   hover:before:w-full"
               >
-                {item}
+                {label}
               </a>
             </li>
           ))}
