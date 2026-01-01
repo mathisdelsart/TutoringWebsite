@@ -14,7 +14,8 @@ export default function Services({ services }: ServicesProps) {
         'Analyse et fonctions',
         'Statistiques et probabilités',
         'Préparation aux examens et concours'
-      ]
+      ],
+      equations: ['f(x)=ax²+bx+c', '∫', '∇', 'π', '√', '∑', '∞', 'α', 'β', 'γ']
     },
     {
       title: 'Physique',
@@ -24,7 +25,8 @@ export default function Services({ services }: ServicesProps) {
         'Optique géométrique et ondulatoire',
         'Thermodynamique et énergie',
         'Préparation aux examens et concours'
-      ]
+      ],
+      equations: ['E=mc²', 'F=ma', 'V=IR', 'λ', 'ω', 'ν', 'Q', 'P', 'W', 'h']
     }
   ]
 
@@ -44,11 +46,29 @@ export default function Services({ services }: ServicesProps) {
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className="card p-12 card-hover group transform transition-all duration-500 hover:scale-105"
+              className="card p-12 card-hover group transform transition-all duration-500 hover:scale-105 relative overflow-hidden"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <h3 className="text-4xl font-bold mb-8 gradient-text">{subject.title}</h3>
-              <ul className="space-y-3 mb-8">
+              {/* Equation background - appears on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                {subject.equations.map((eq, i) => (
+                  <div
+                    key={i}
+                    className="absolute text-6xl font-bold text-white/5"
+                    style={{
+                      top: `${Math.random() * 80}%`,
+                      left: `${Math.random() * 80}%`,
+                      transform: `rotate(${Math.random() * 30 - 15}deg)`,
+                      transitionDelay: `${i * 0.1}s`
+                    }}
+                  >
+                    {eq}
+                  </div>
+                ))}
+              </div>
+              
+              <h3 className="text-4xl font-bold mb-8 gradient-text relative z-10">{subject.title}</h3>
+              <ul className="space-y-3 mb-8 relative z-10">
                 {subject.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
                     <span className="text-success text-xl font-bold mt-1">✓</span>
@@ -56,7 +76,7 @@ export default function Services({ services }: ServicesProps) {
                   </li>
                 ))}
               </ul>
-              <p className="text-textSecondary font-semibold">
+              <p className="text-textSecondary font-semibold relative z-10">
                 Niveau Secondaires
               </p>
             </div>

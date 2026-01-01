@@ -112,16 +112,13 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           <div className="max-w-[1400px] mx-auto px-8 text-center">
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
             
-            <h3 className="text-4xl font-extrabold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              Prêt à démarrer ?
+            <h3 className="text-5xl font-extrabold mb-6 bg-gradient-to-r from-white via-primary to-accent bg-clip-text text-transparent">
+              Le succès commence par une décision
             </h3>
-            <p className="text-textSecondary mb-8">
-              Rejoins les élèves qui ont transformé leurs résultats
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Chaque grand parcours commence par un premier pas. <br/>
+              <span className="gradient-text font-semibold">Ta réussite t'attend.</span>
             </p>
-            <a href="#contact" className="btn-primary relative overflow-hidden group">
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              <span className="relative">Commence ton parcours</span>
-            </a>
             
             <p className="text-textSecondary text-sm mt-12 pt-8 border-t border-primary/10">
               © {new Date().getFullYear()} <span className="font-medium text-white">{prof.nom}</span> • Professeur particulier à {prof.ville}

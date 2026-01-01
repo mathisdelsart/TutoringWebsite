@@ -27,7 +27,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
     {
       icon: '💬',
       title: 'WhatsApp',
-      value: `+${whatsapp}`,
+      value: `+32 468.38.63.54`,
       link: whatsappLink,
       color: 'from-green-500 to-emerald-600',
       bgColor: 'bg-green-500/10',

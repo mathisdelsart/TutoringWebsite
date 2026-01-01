@@ -22,7 +22,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
   return (
     <section id="accueil" className="relative min-h-screen flex items-center py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_500px] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 items-end">
           {/* Texte principal */}
           <div className={`space-y-8 ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <h1 className="text-6xl md:text-7xl font-extrabold leading-[1.1] bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
@@ -30,22 +30,32 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
             </h1>
             
             <p className="text-xl md:text-2xl text-textSecondary leading-relaxed">
-              Ingénieur civil en Informatique & IA, passionné par l'enseignement. Je te propose une pédagogie moderne et personnalisée pour atteindre tes objectifs et gagner en confiance !
+              Ingénieur civil en Informatique & IA, passionné par l'enseignement.
+              <br/><br/>
+              Je te propose une pédagogie moderne et personnalisée pour atteindre tes objectifs et gagner en confiance !
             </p>
 
             {/* Stats Grid avec design qui pète */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="group relative overflow-hidden rounded-2xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/20 to-transparent"></div>
-                  <div className="relative backdrop-blur-sm bg-white/5 card-hover p-8 text-center border border-primary/20">
+                  {/* Glowing animated border */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl opacity-75 group-hover:opacity-100 blur animate-[pulse_3s_ease-in-out_infinite]"></div>
+                  <div className="relative backdrop-blur-sm bg-background/90 card-hover p-8 text-center rounded-2xl">
+                    {/* Sparkles effect */}
+                    <div className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full animate-ping"></div>
+                    <div className="absolute bottom-2 left-2 w-2 h-2 bg-secondary rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
                     <div className="text-6xl font-extrabold gradient-text mb-2 animate-[iconFloat_3s_ease-in-out_infinite]">150+</div>
                     <div className="text-sm text-textSecondary uppercase tracking-wider font-semibold">Élèves accompagnés</div>
                   </div>
                 </div>
                 <div className="group relative overflow-hidden rounded-2xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-orange/20 to-transparent"></div>
-                  <div className="relative backdrop-blur-sm bg-white/5 card-hover p-8 text-center border border-accent/20">
+                  {/* Glowing animated border */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-accent via-orange to-primary rounded-2xl opacity-75 group-hover:opacity-100 blur animate-[pulse_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}></div>
+                  <div className="relative backdrop-blur-sm bg-background/90 card-hover p-8 text-center rounded-2xl">
+                    {/* Sparkles effect */}
+                    <div className="absolute top-2 left-2 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute bottom-2 right-2 w-2 h-2 bg-orange rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
                     <div className="text-6xl font-extrabold gradient-text mb-2 animate-[iconFloat_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>3</div>
                     <div className="text-sm text-textSecondary uppercase tracking-wider font-semibold">Années d'expérience</div>
                   </div>
@@ -78,7 +88,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
               </div>
 
               {/* Profile Image */}
-              <div className="relative w-full aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 mb-6 overflow-hidden">
+              <div className="relative w-full aspect-[4/5] rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 mb-6 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent animate-[shimmer_3s_ease-in-out_infinite] z-10 pointer-events-none"></div>
                 <Image
                   src="/face_image.png"
@@ -97,16 +107,31 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
               <div className="space-y-5">
 
                 {/* Localisation redesignée */}
-                <div className="relative overflow-hidden rounded-xl p-5 bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/30">
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-accent/20 rounded-full blur-2xl"></div>
-                  <div className="relative space-y-2 text-sm">
-                    <div className="flex items-center gap-2 text-white font-semibold">
-                      <span className="text-xl">📍</span>
-                      <span>{zone}</span>
+                <div className="relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-accent/10 to-primary/10 border-2 border-accent/30">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
+                  <div className="relative space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs text-textSecondary uppercase tracking-wider mb-1">Localisation</div>
+                        <div className="text-white font-semibold">{zone}</div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <span className="text-xl">🏠</span>
-                      <span>{modalites.join(' • ')}</span>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-xs text-textSecondary uppercase tracking-wider mb-1">Modalités</div>
+                        <div className="text-gray-300 font-medium">{modalites.join(' • ')}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
