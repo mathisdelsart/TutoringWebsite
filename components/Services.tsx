@@ -105,9 +105,13 @@ export default function Services({ services }: ServicesProps) {
                 <div className="relative z-10">
                   {/* Header with LARGE prominent level badge */}
                   <div className="flex items-start justify-between mb-6">
-                    <h3 className={`text-3xl font-extrabold bg-gradient-to-r ${subject.gradient} bg-clip-text text-transparent drop-shadow-lg`}>
-                      {subject.title}
-                    </h3>
+                    <div className="relative">
+                      {/* Colored background effect */}
+                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} opacity-20 blur-xl rounded-lg`}></div>
+                      <h3 className="relative text-3xl font-extrabold text-white drop-shadow-lg">
+                        {subject.title}
+                      </h3>
+                    </div>
                     <div className="relative group/badge">
                       {/* Badge glow */}
                       <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} rounded-2xl opacity-50 blur-lg group-hover:opacity-80 transition-opacity duration-300`}></div>
