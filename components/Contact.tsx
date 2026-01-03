@@ -17,6 +17,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
   const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
+  const messengerLink = `https://m.me/votreprofil?text=Bonjour ${encodeURIComponent(nom)}, je souhaiterais prendre des cours avec vous.`
 
   const contactMethods = [
     {
@@ -33,7 +34,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
       icon: <MessagesSquare />,
       title: 'Messenger',
       value: 'Contacte-moi directement',
-      link: 'https://m.me/votreprofil',
+      link: messengerLink,
       color: 'from-purple-500 to-pink-600',
       bgColor: 'bg-purple-500/10',
       borderColor: 'border-purple-500/30',
