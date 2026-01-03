@@ -35,6 +35,12 @@ function getProfData(): ProfData {
   return JSON.parse(fileContents)
 }
 
+export async function generateStaticParams() {
+  return [
+    { slug: 'mathis-delsart' }
+  ]
+}
+
 export default function ProfPage({ params }: { params: { slug: string } }) {
   const prof = getProfData()
 
