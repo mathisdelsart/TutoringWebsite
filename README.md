@@ -1,4 +1,4 @@
-# PageProf MVP 🧾
+# PageProf MVP
 
 Landing page personnelle pour professeur particulier optimisée pour le référencement local et la conversion.
 

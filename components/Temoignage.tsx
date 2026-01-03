@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface TemoignageProps {
   temoignage?: {
@@ -11,85 +11,135 @@ interface TemoignageProps {
 
 export default function Temoignage({ temoignage }: TemoignageProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   const testimonials = [
     {
-      text: "Incroyable progression ! Je suis passé de 11/20 à 17/20 en maths en quelques mois. Les méthodes sont claires et efficaces, je recommande à 200% !",
-      author: "Alexandre M.",
-      role: "Terminale S",
-      avatar: "AM"
+      text: "Ma fille a adoré ses sessions sur la trigonométrie avec Mathis ; il maîtrise clairement le sujet et sait se mettre à la place de l’élève. Ses explications sont claires et il n’hésite pas à se répéter si nécessaire. Nous referons appel à lui sans hésitation.",
+      author: "Charlier",
+      role: "Parent d’élève – Maths",
+      avatar: "C"
     },
     {
-      text: "Un professeur exceptionnel ! Ma fille a retrouvé confiance en elle et adore maintenant les sciences. Pédagogue, patient et à l'écoute.",
-      author: "Sophie L.",
-      role: "Parent d'élève",
-      avatar: "SL"
+      text: "Très satisfaite. Ponctuel, aimable. Mon fils a apprécié sa manière d’expliquer. À recommander.",
+      author: "Stéphanie",
+      role: "Parent d’élève – Physique",
+      avatar: "S"
     },
     {
-      text: "Le meilleur prof que j'ai eu ! Explications ultra précises, exercices adaptés à mon niveau en prépa. J'ai enfin tout compris. Merci infiniment !",
-      author: "Thomas C.",
-      role: "Prépa MPSI",
-      avatar: "TC"
+      text: "Mathis est un professeur excellent. Très sérieux et extrêmement ordonné. Il prépare ses cours à l’avance et donne des exercices pour le cours suivant. Je le recommande fortement !",
+      author: "Soraya",
+      role: "Parent d’élève – Physique",
+      avatar: "S"
     },
     {
-      text: "Grâce aux cours, j'ai enfin compris les maths. La pédagogie est top, les explications sont claires et j'ai repris confiance. Mes notes ont beaucoup augmenté !",
-      author: "Emma D.",
-      role: "Première",
-      avatar: "ED"
+      text: "Notre fils Guido a eu un examen de passage en math après une année très compliquée. En deux semaines (2h/jour), Mathis a revu et expliqué clairement une année complète. Guido a réussi son examen. Un immense merci pour son travail et sa patience !",
+      author: "Sonik",
+      role: "Parent d’élève – Mathématiques",
+      avatar: "S"
     },
     {
-      text: "Mon fils était en difficulté en physique. Après quelques mois de cours, il a eu 16 au bac ! Un grand merci pour votre patience et votre expertise.",
-      author: "Marc R.",
-      role: "Parent d'élève",
-      avatar: "MR"
+      text: "Mon fils a suivi des cours de math et de physique avec Mathis pour réussir sa seconde session (5ème option Math/Sciences). Il est disponible, poli et ponctuel. Il prépare ses cours à l’avance et est très organisé. Mon fils a réussi ses examens et est prêt à entamer sa rhéto. Je recommande Mathis comme professeur particulier.",
+      author: "Laurence",
+      role: "Parent d’élève – Maths & Physique",
+      avatar: "L"
     },
     {
-      text: "Des cours de qualité qui m'ont permis de réussir mes partiels. Les concepts complexes deviennent accessibles. Je recommande vivement !",
-      author: "Léa B.",
-      role: "Licence Physique",
-      avatar: "LB"
+      text: "Très bon professeur, étude efficace dans une ambiance agréable. Ma fille, qui avait de grosses difficultés, a retrouvé confiance et réussi son examen. Je recommande vivement !",
+      author: "Lolly",
+      role: "Parent d’élève – Maths",
+      avatar: "L"
     },
     {
-      text: "Excellente pédagogie ! J'étais perdu en trigonométrie, maintenant c'est devenu facile. Les exercices sont bien choisis et progressifs.",
-      author: "Hugo F.",
-      role: "Seconde",
-      avatar: "HF"
+      text: "Il m’a aidé pour mes examens et m’a permis de me remettre à niveau. Il explique clairement et s’adapte selon les besoins. Je vous le conseille sans hésiter.",
+      author: "Jacqmin",
+      role: "Ancien élève - Maths",
+      avatar: "J"
     },
     {
-      text: "Super prof ! Patient, à l'écoute et toujours disponible pour réexpliquer. Ma moyenne est passée de 10 à 15. Un vrai changement !",
-      author: "Chloé V.",
-      role: "Troisième",
-      avatar: "CV"
+      text: "Ayant reçu de l’aide de Mathis dans certains cours, je peux témoigner de sa capacité à expliquer clairement et à rendre accessibles des notions complexes, en particulier en mathématiques.",
+      author: "Coralie",
+      role: "Recommendation",
+      avatar: "C"
     },
     {
-      text: "Les cours m'ont sauvé pour le bac. J'ai compris des choses que je n'avais jamais comprises en classe. Résultat : mention bien !",
-      author: "Lucas P.",
-      role: "Terminale",
-      avatar: "LP"
+      text: "Mathis a toujours su rendre les mathématiques et les sciences accessibles. Patient et pédagogue, il aide à comprendre et à faire des liens entre les concepts. Je le recommande vivement.",
+      author: "Laurine",
+      role: "Recommendation",
+      avatar: "L"
+    },
+    {
+      text: "Je recommande vivement Mathis pour des cours de mathématiques et de physique au secondaire. Grâce à ses explications claires et à son approche patiente, il aide réellement les élèves à progresser et à gagner en confiance.",
+      author: "Thomas",
+      role: "Recommendation",
+      avatar: "T"
     }
   ]
 
-  useEffect(() => {
-    if (!isAutoPlaying) return
-    
-    const maxSlides = Math.ceil(testimonials.length / 3)
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => ((Math.floor(prev / 3) + 1) % maxSlides) * 3)
-    }, 5000)
-    
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, testimonials.length])
+  // const testimonials = [
+  //   {
+  //     text: "Incroyable progression ! Je suis passé de 11/20 à 17/20 en maths en quelques mois. Les méthodes sont claires et efficaces, je recommande à 200% !",
+  //     author: "Alexandre M.",
+  //     role: "Terminale S",
+  //     avatar: "AM"
+  //   },
+  //   {
+  //     text: "Un professeur exceptionnel ! Ma fille a retrouvé confiance en elle et adore maintenant les sciences. Pédagogue, patient et à l'écoute.",
+  //     author: "Sophie L.",
+  //     role: "Parent d'élève",
+  //     avatar: "SL"
+  //   },
+  //   {
+  //     text: "Le meilleur prof que j'ai eu ! Explications ultra précises, exercices adaptés à mon niveau en prépa. J'ai enfin tout compris. Merci infiniment !",
+  //     author: "Thomas C.",
+  //     role: "Prépa MPSI",
+  //     avatar: "TC"
+  //   },
+  //   {
+  //     text: "Grâce aux cours, j'ai enfin compris les maths. La pédagogie est top, les explications sont claires et j'ai repris confiance. Mes notes ont beaucoup augmenté !",
+  //     author: "Emma D.",
+  //     role: "Première",
+  //     avatar: "ED"
+  //   },
+  //   {
+  //     text: "Mon fils était en difficulté en physique. Après quelques mois de cours, il a eu 16 au bac ! Un grand merci pour votre patience et votre expertise.",
+  //     author: "Marc R.",
+  //     role: "Parent d'élève",
+  //     avatar: "MR"
+  //   },
+  //   {
+  //     text: "Des cours de qualité qui m'ont permis de réussir mes partiels. Les concepts complexes deviennent accessibles. Je recommande vivement !",
+  //     author: "Léa B.",
+  //     role: "Licence Physique",
+  //     avatar: "LB"
+  //   },
+  //   {
+  //     text: "Excellente pédagogie ! J'étais perdu en trigonométrie, maintenant c'est devenu facile. Les exercices sont bien choisis et progressifs.",
+  //     author: "Hugo F.",
+  //     role: "Seconde",
+  //     avatar: "HF"
+  //   },
+  //   {
+  //     text: "Super prof ! Patient, à l'écoute et toujours disponible pour réexpliquer. Ma moyenne est passée de 10 à 15. Un vrai changement !",
+  //     author: "Chloé V.",
+  //     role: "Troisième",
+  //     avatar: "CV"
+  //   },
+  //   {
+  //     text: "Les cours m'ont sauvé pour le bac. J'ai compris des choses que je n'avais jamais comprises en classe. Résultat : mention bien !",
+  //     author: "Lucas P.",
+  //     role: "Terminale",
+  //     avatar: "LP"
+  //   }
+  // ]
+
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
-    setIsAutoPlaying(false)
   }
 
   const nextSlide = () => {
     const maxSlides = Math.ceil(testimonials.length / 3)
     setCurrentIndex((prev) => ((Math.floor(prev / 3) + 1) % maxSlides) * 3)
-    setIsAutoPlaying(false)
   }
 
   const prevSlide = () => {
@@ -99,7 +149,6 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
       const prevSlide = (currentSlide - 1 + maxSlides) % maxSlides
       return prevSlide * 3
     })
-    setIsAutoPlaying(false)
   }
 
   return (

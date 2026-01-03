@@ -15,8 +15,8 @@ export default function Navigation() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/80 border-b border-primary/10' : 'bg-transparent'
-    } backdrop-blur-xl`}>
+      isScrolled ? 'bg-background/80' : 'bg-transparent'
+    } backdrop-blur-xl border-b border-primary/20`}>
       <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center py-6">
         <div className="font-mono text-2xl font-bold gradient-text animate-[glow_3s_ease-in-out_infinite]">
           ∫ MATH·PHYS ∫

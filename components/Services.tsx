@@ -8,47 +8,47 @@ export default function Services({ services }: ServicesProps) {
   const subjects = [
     {
       title: 'Mathématiques',
-      levels: '1ère → 6ème secondaire',
+      levels: '1ère → 6ème Secondaire',
       levelBadge: '1-6',
-      topics: ['Algèbre', 'Géométrie', 'Analyse', 'Statistiques'],
+      topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie', 'Statistiques'],
       gradient: 'from-indigo-400 via-purple-500 to-pink-500',
       borderGradient: 'from-indigo-500 to-pink-500',
       glowColor: 'indigo',
       benefits: [
-        'Programme complet de secondaire',
-        'Méthodologie adaptée à chaque niveau',
-        'Préparation examens & concours',
-        'Explications claires et visuelles'
+        'Maîtrise approfondie du programme officiel',
+        'Méthodologie personnalisée selon le niveau',
+        'Préparation efficace aux évaluations',
+        'Explications claires, structurées et visuelles'
       ]
     },
     {
       title: 'Physique',
-      levels: '3ème → 6ème secondaire',
+      levels: '3ème → 6ème Secondaire',
       levelBadge: '3-6',
-      topics: ['Mécanique', 'Électricité', 'Optique', 'Thermodynamique'],
+      topics: ['Électricité', 'Mécanique', 'Optique', 'Ondes', 'Thermodynamique'],
       gradient: 'from-cyan-400 via-blue-500 to-indigo-500',
       borderGradient: 'from-cyan-500 to-indigo-500',
       glowColor: 'cyan',
       benefits: [
-        'Expertise complète du programme',
-        'Approche concrète avec exemples',
-        'Préparation examens & concours',
-        'Concepts complexes simplifiés'
+        'Maîtrise approfondie du programme officiel',
+        'Approche concrète par exemples réels',
+        'Préparation ciblée aux évaluations',
+        'Concepts complexes expliqués simplement'
       ]
     },
     {
       title: 'Programmation Python',
-      levels: 'Débutants & Niveau avancé',
+      levels: 'Niveau Débutants',
       levelBadge: 'Py',
-      topics: ['Bases', 'Algorithmes', 'Projets', 'Data Science'],
+      topics: ['Bases', 'Projets', 'Game Dev', 'Algorithmes', 'Logique'],
       gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
       borderGradient: 'from-emerald-500 to-cyan-500',
       glowColor: 'emerald',
       benefits: [
         'De zéro aux projets concrets',
-        'Apprentissage ludique et pratique',
-        'Portfolio de projets personnels',
-        'Compétence recherchée sur le marché'
+        'Apprentissage ludique, progressif et pratique',
+        'Compréhension théorique des concepts clés',
+        'Compétence clé recherchée sur le marché'
       ]
     }
   ]
@@ -115,7 +115,7 @@ export default function Services({ services }: ServicesProps) {
                     <div className="relative group/badge">
                       {/* Badge glow */}
                       <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} rounded-2xl opacity-50 blur-lg group-hover:opacity-80 transition-opacity duration-300`}></div>
-                      <div className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${subject.gradient} shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                      <div className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${subject.gradient} shadow-2xl transform group-hover:scale-104 group-hover:rotate-6 transition-all duration-300`}>
                         <span className="text-2xl font-black text-white drop-shadow-md">{subject.levelBadge}</span>
                       </div>
                     </div>
@@ -126,17 +126,20 @@ export default function Services({ services }: ServicesProps) {
                     {subject.levels}
                   </p>
 
-                  {/* Topics badges with glassmorphism and individual animations */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {subject.topics.map((topic, i) => (
                       <span
                         key={i}
                         className="px-3 py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-sm font-medium text-white hover:bg-white/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                        style={{ transitionDelay: `${i * 50}ms` }}
                       >
                         {topic}
                       </span>
                     ))}
+
+                    {/* Ellipsis indicator */}
+                    <span className="px-2 py-2 text-sm italic text-white/50 select-none">
+                      … et bien plus
+                    </span>
                   </div>
 
                   {/* Benefits list with staggered check animations */}

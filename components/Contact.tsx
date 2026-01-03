@@ -1,5 +1,9 @@
 'use client'
 
+import { useState } from 'react'
+import { Mail, MessageCircle, MessagesSquare } from 'lucide-react'
+import ContactForm from './ContactForm'
+
 interface ContactProps {
   email: string
   whatsapp: string
@@ -10,40 +14,41 @@ interface ContactProps {
 }
 
 export default function Contact({ email, whatsapp, nom, zone, modalites, disponibilites }: ContactProps) {
+  const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
 
   const contactMethods = [
     {
-      icon: '📧',
-      title: 'Email',
-      value: email,
-      link: emailLink,
-      color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-500/10',
-      borderColor: 'border-blue-500/30',
-      description: 'Réponse détaillée sous 24h'
-    },
-    {
-      icon: '💬',
+      icon: <MessageCircle />,
       title: 'WhatsApp',
       value: `+32 468.38.63.54`,
       link: whatsappLink,
       color: 'from-green-500 to-emerald-600',
       bgColor: 'bg-green-500/10',
       borderColor: 'border-green-500/30',
-      description: 'Réponse rapide et instantanée'
+      description: 'Réponse rapide'
     },
     {
-      icon: '💬',
+      icon: <MessagesSquare />,
       title: 'Messenger',
       value: 'Contacte-moi directement',
       link: 'https://m.me/votreprofil',
       color: 'from-purple-500 to-pink-600',
       bgColor: 'bg-purple-500/10',
       borderColor: 'border-purple-500/30',
-      description: 'Chat direct et convivial'
-    }
+      description: 'Réponse très rapide'
+    },
+    {
+      icon: <Mail />,
+      title: 'Email',
+      value: email,
+      link: emailLink,
+      color: 'from-blue-500 to-blue-600',
+      bgColor: 'bg-blue-500/10',
+      borderColor: 'border-blue-500/30',
+      description: 'Réponse sous 24h'
+    },
   ]
 
   return (
@@ -53,13 +58,40 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Contacte-moi
           </h2>
-          <p className="text-xl text-textSecondary max-w-3xl mx-auto">
+          <p className="text-xl text-textSecondary max-w-3xl mx-auto mb-6">
             Prêt à transformer tes résultats ? Parlons-en !
           </p>
+
+          {/* Toggle buttons */}
+          <div className="flex justify-center gap-4 mb-8">
+            <button
+              onClick={() => setShowForm(true)}
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                showForm
+                  ? 'bg-primary text-white shadow-lg shadow-primary/40'
+                  : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
+              }`}
+            >
+              📝 Formulaire de demande
+            </button>
+            <button
+              onClick={() => setShowForm(false)}
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                !showForm
+                  ? 'bg-primary text-white shadow-lg shadow-primary/40'
+                  : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
+              }`}
+            >
+              💬 Contact direct
+            </button>
+          </div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {showForm ? (
+          <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
+        ) : (
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
@@ -83,6 +115,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
             ))}
           </div>
         </div>
+        )}
       </div>
     </section>
   )

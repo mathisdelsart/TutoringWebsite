@@ -27,7 +27,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -10;
   background: linear-gradient(135deg, #0F0F1E 0%, #1a1a2e 50%, #16213e 100%);
 }
 
@@ -50,22 +50,22 @@ body {
   66% { transform: translate(50px, -50px) rotate(-5deg); }
 }
 
-/* Floating particles */
+/* Floating particles - Toujours derrière le contenu */
 .particles {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: -5;
   pointer-events: none;
 }
 
 .particle {
   position: absolute;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
   border-radius: 50%;
-  filter: blur(2px);
+  filter: blur(3px);
   animation: float 15s ease-in-out infinite;
 }
 
@@ -82,19 +82,19 @@ body {
   75% { transform: translate(80px, -100px) scale(1.1); opacity: 0.6; }
 }
 
-/* Grid effect */
+/* Grid effect - Toujours en arrière-plan */
 .grid-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
-  z-index: 0;
-  opacity: 0.5;
+  z-index: -8;
+  opacity: 0.4;
 }
 
 /* Gradient text animation - Enhanced */
@@ -212,13 +212,11 @@ body {
 
 @layer utilities {
   .card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    border-radius: 24px;
-    backdrop-filter: blur(16px);
-    box-shadow:
-      0 8px 32px rgba(99, 102, 241, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
   }
   
   .card-hover {
@@ -244,101 +242,58 @@ body {
   }
 
   .card-hover:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: rgba(99, 102, 241, 0.6);
-    box-shadow:
-      0 24px 64px rgba(99, 102, 241, 0.35),
-      0 0 0 1px rgba(99, 102, 241, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
   }
   
   .btn-primary {
-    background: linear-gradient(135deg, #6366F1, #8B5CF6, #A855F7);
-    background-size: 200% 200%;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
     color: white;
-    border-radius: 16px;
-    padding: 18px 40px;
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: -0.01em;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-      0 10px 40px rgba(99, 102, 241, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    border-radius: 14px;
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.3);
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-  }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-primary:hover::before {
-    left: 100%;
+    gap: 8px;
   }
 
   .btn-primary:hover {
-    transform: translateY(-5px) scale(1.02);
-    background-position: 100% 50%;
-    box-shadow:
-      0 24px 64px rgba(99, 102, 241, 0.65),
-      0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(99, 102, 241, 0.4);
   }
 
   .btn-primary:active {
-    transform: translateY(-2px) scale(0.98);
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     color: white;
-    border: 2px solid rgba(99, 102, 241, 0.5);
-    backdrop-filter: blur(16px);
-    border-radius: 16px;
-    padding: 18px 40px;
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: -0.01em;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 14px 30px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-secondary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-secondary:hover::before {
-    opacity: 1;
+    gap: 8px;
   }
 
   .btn-secondary:hover {
-    background: rgba(99, 102, 241, 0.12);
-    border-color: rgba(99, 102, 241, 0.8);
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 16px 48px rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
   }
 
   .btn-secondary:active {
-    transform: translateY(-2px) scale(0.98);
+    transform: translateY(-1px);
   }
 
   /* Animation pour les titres */
@@ -363,6 +318,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Smoother scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Section scroll offset for sticky navbar */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Ajustement spécifique pour sections avec contenu en grille */
+section#matieres,
+section#temoignages {
+  scroll-margin-top: 3rem;
 }
 
 /* Selection styling */
