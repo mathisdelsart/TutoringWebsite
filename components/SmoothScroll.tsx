@@ -14,24 +14,31 @@ export default function SmoothScroll() {
         if (href && href !== '#') {
           const element = document.querySelector(href) as HTMLElement
           if (element) {
-            const title = element.querySelector('h2')
-
-            if (title) {
-              const titleRect = title.getBoundingClientRect()
-              const titlePosition = titleRect.top + window.scrollY
-              const viewportHeight = window.innerHeight
-              const titleHeight = titleRect.height
-              const offsetPosition = titlePosition - (viewportHeight / 2 - titleHeight / 2) + 100
-
+            // Hauteur de la navigation
+            const navHeight = 96
+            
+            // Calculer la hauteur de la viewport
+            const viewportHeight = window.innerHeight
+            
+            // Hauteur de la section
+            const sectionHeight = element.offsetHeight
+            
+            // Position de l'élément par rapport au haut de la page
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY
+            
+            // Pour la section accueil, on la positionne juste sous la nav
+            if (href === '#accueil') {
+              const offsetPosition = elementPosition - navHeight - 20
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
               })
             } else {
-              const navHeight = 96
-              const elementPosition = element.getBoundingClientRect().top + window.scrollY
-              const offsetPosition = elementPosition - navHeight - 20
-
+              // Pour les autres sections, on centre le contenu dans la viewport
+              // en tenant compte de la navigation
+              const availableHeight = viewportHeight - navHeight
+              const offsetPosition = elementPosition - navHeight - (availableHeight - sectionHeight) / 2
+              
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
