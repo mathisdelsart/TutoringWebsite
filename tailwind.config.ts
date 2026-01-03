@@ -22,7 +22,13 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Outfit', 'system-ui', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        display: ['Space Grotesk', 'Outfit', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Space Mono', 'monospace'],
+      },
+      fontSize: {
+        'display-xl': ['5.5rem', { lineHeight: '1', letterSpacing: '-0.03em', fontWeight: '900' }],
+        'display-lg': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display-md': ['3.5rem', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '700' }],
       },
     },
   },
