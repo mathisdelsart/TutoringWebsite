@@ -326,9 +326,10 @@ section[id] {
 }
 
 /* Ajustement spécifique pour sections avec contenu en grille */
+/* Centrer visuellement sur le contenu global, pas sur le titre */
 section#matieres,
 section#temoignages {
-  scroll-margin-top: 3rem;
+  scroll-margin-top: 2rem;
 }
 
 /* Selection styling */

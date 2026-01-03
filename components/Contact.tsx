@@ -63,27 +63,32 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
           </p>
 
           {/* Toggle buttons */}
-          <div className="flex justify-center gap-4 mb-8">
-            <button
-              onClick={() => setShowForm(true)}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                showForm
-                  ? 'bg-primary text-white shadow-lg shadow-primary/40'
-                  : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
-              }`}
-            >
-              📝 Formulaire de demande
-            </button>
-            <button
-              onClick={() => setShowForm(false)}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                !showForm
-                  ? 'bg-primary text-white shadow-lg shadow-primary/40'
-                  : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
-              }`}
-            >
-              💬 Contact direct
-            </button>
+          <div className="flex flex-col items-center gap-3 mb-8">
+            <div className="flex gap-4">
+              <button
+                onClick={() => setShowForm(true)}
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
+                  showForm
+                    ? 'bg-primary text-white shadow-lg shadow-primary/40'
+                    : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
+                }`}
+              >
+                <Mail className="w-4 h-4" />
+                Formulaire de demande
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
+                  !showForm
+                    ? 'bg-primary text-white shadow-lg shadow-primary/40'
+                    : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-primary/30'
+                }`}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Contact direct
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 italic">Le formulaire de demande est à privilégier pour un premier contact</p>
           </div>
         </div>
 
