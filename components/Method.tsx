@@ -37,7 +37,7 @@ const whyChoose = [
             Pourquoi me choisir ?
           </h2>
           <p className="text-xl text-textSecondary max-w-3xl mx-auto">
-            Une approche personnalisée pour votre réussite
+            Une approche personnalisée pour ta réussite
           </p>
         </div>
         

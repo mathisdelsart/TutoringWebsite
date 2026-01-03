@@ -7,17 +7,18 @@ import ContactForm from './ContactForm'
 interface ContactProps {
   email: string
   whatsapp: string
+  messenger?: string
   nom: string
   zone: string
   modalites: string[]
   disponibilites: string
 }
 
-export default function Contact({ email, whatsapp, nom, zone, modalites, disponibilites }: ContactProps) {
+export default function Contact({ email, whatsapp, messenger, nom, zone, modalites, disponibilites }: ContactProps) {
   const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
-  const messengerLink = `https://m.me/votreprofil?text=Bonjour ${encodeURIComponent(nom)}, je souhaiterais prendre des cours avec vous.`
+  const messengerLink = messenger ? `https://m.me/${messenger}` : `fb-messenger://user/${messenger || ''}`
 
   const contactMethods = [
     {

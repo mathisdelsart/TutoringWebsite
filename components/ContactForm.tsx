@@ -106,7 +106,7 @@ Merci pour votre attention !`
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
       <h3 className="text-2xl font-bold text-white mb-2">Demande de cours</h3>
-      <p className="text-gray-400 mb-6 text-sm">Remplissez ce formulaire pour me contacter directement</p>
+      <p className="text-gray-400 mb-6 text-sm">Remplis ce formulaire pour me contacter directement</p>
 
       {/* Progress bar */}
       <div className="flex gap-2 mb-8">
@@ -129,7 +129,7 @@ Merci pour votre attention !`
                 value={formData.name}
                 onChange={(e) => updateFormData('name', e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
-                placeholder="Votre nom complet"
+                placeholder="Ton prénom complet"
               />
             </div>
 
@@ -158,7 +158,7 @@ Merci pour votre attention !`
                   )
                 })}
               </div>
-              <p className="text-xs text-gray-500 mt-2">Vous pouvez sélectionner plusieurs matières</p>
+              <p className="text-xs text-gray-500 mt-2">Tu peux sélectionner plusieurs matières</p>
             </div>
 
             <div>
@@ -333,7 +333,7 @@ Merci pour votre attention !`
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Vos disponibilités <span className="text-accent">*</span>
+                Tes disponibilités <span className="text-accent">*</span>
               </label>
               <input
                 type="text"
@@ -341,7 +341,7 @@ Merci pour votre attention !`
                 value={formData.availability}
                 onChange={(e) => updateFormData('availability', e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
-                placeholder="Ex: Lundi et mercredi soir, weekend"
+                placeholder="Ex: Lundi et mercredi soir, week-end"
               />
             </div>
 
@@ -359,7 +359,7 @@ Merci pour votre attention !`
             </div>
 
             <div className="pt-4 border-t border-primary/20">
-              <p className="text-sm text-gray-400 mb-4">Choisissez votre moyen de contact :</p>
+              <p className="text-sm text-gray-400 mb-4">Choisis ton moyen de contact :</p>
 
               <div className="grid grid-cols-3 gap-3">
                 <button

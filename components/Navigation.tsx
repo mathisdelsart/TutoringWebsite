@@ -35,7 +35,7 @@ export default function Navigation() {
           </div>
         </div>
         <ul className="hidden md:flex gap-12 list-none">
-          {[['Accueil', 'accueil'], ['Matières', 'matieres'], ['Méthode', 'methode'], ['Témoignages', 'temoignages'], ['Contact', 'contact']].map(([label, id]) => (
+          {[['Accueil', 'accueil'], ['Méthode', 'methode'], ['Matières', 'matieres'], ['Témoignages', 'temoignages'], ['Contact', 'contact']].map(([label, id]) => (
             <li key={id}>
               <a
                 href={`#${id}`}

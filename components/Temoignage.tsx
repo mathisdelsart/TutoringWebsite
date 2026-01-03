@@ -2,14 +2,7 @@
 
 import { useState } from 'react'
 
-interface TemoignageProps {
-  temoignage?: {
-    texte: string
-    auteur: string
-  }
-}
-
-export default function Temoignage({ temoignage }: TemoignageProps) {
+export default function Temoignage() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const testimonials = [
@@ -32,13 +25,13 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
       avatar: "S"
     },
     {
-      text: "Notre fils Guido a eu un examen de passage en math après une année très compliquée. En deux semaines (2h/jour), Mathis a revu et expliqué clairement une année complète. Guido a réussi son examen. Un immense merci pour son travail et sa patience !",
+      text: "Notre fils Guido a eu un examen de passage en maths après une année très compliquée. En deux semaines (2h/jour), Mathis a revu et expliqué clairement une année complète. Guido a réussi son examen. Un immense merci pour son travail et sa patience !",
       author: "Sonik",
       role: "Parent d’élève – Mathématiques",
       avatar: "S"
     },
     {
-      text: "Mon fils a suivi des cours de math et de physique avec Mathis pour réussir sa seconde session (5ème option Math/Sciences). Il est disponible, poli et ponctuel. Il prépare ses cours à l’avance et est très organisé. Mon fils a réussi ses examens et est prêt à entamer sa rhéto. Je recommande Mathis comme professeur particulier.",
+      text: "Mon fils a suivi des cours de maths et de physique avec Mathis pour réussir sa seconde session (5ème option Math/Sciences). Il est disponible, poli et ponctuel. Il prépare ses cours à l’avance et est très organisé. Mon fils a réussi ses examens et est prêt à entamer sa rhéto. Je recommande Mathis comme professeur particulier.",
       author: "Laurence",
       role: "Parent d’élève – Maths & Physique",
       avatar: "L"
@@ -52,50 +45,47 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
     {
       text: "Il m’a aidé pour mes examens et m’a permis de me remettre à niveau. Il explique clairement et s’adapte selon les besoins. Je vous le conseille sans hésiter.",
       author: "Jacqmin",
-      role: "Ancien élève - Maths",
+      role: "Ancien élève – Maths",
       avatar: "J"
     },
     {
       text: "Ayant reçu de l’aide de Mathis dans certains cours, je peux témoigner de sa capacité à expliquer clairement et à rendre accessibles des notions complexes, en particulier en mathématiques.",
       author: "Coralie",
-      role: "Recommendation",
+      role: "Recommandation",
       avatar: "C"
     },
     {
       text: "Mathis a toujours su rendre les mathématiques et les sciences accessibles. Patient et pédagogue, il aide à comprendre et à faire des liens entre les concepts. Je le recommande vivement.",
       author: "Laurine",
-      role: "Recommendation",
+      role: "Recommandation",
       avatar: "L"
     },
     {
       text: "Je recommande vivement Mathis pour des cours de mathématiques et de physique au secondaire. Grâce à ses explications claires et à son approche patiente, il aide réellement les élèves à progresser et à gagner en confiance.",
       author: "Thomas",
-      role: "Recommendation",
+      role: "Recommandation",
       avatar: "T"
     }
   ]
-  
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
+
+  const maxSlides = Math.ceil(testimonials.length / 3)
 
   const nextSlide = () => {
-    const maxSlides = Math.ceil(testimonials.length / 3)
     setCurrentIndex((prev) => ((Math.floor(prev / 3) + 1) % maxSlides) * 3)
   }
 
   const prevSlide = () => {
-    const maxSlides = Math.ceil(testimonials.length / 3)
     setCurrentIndex((prev) => {
-      const currentSlide = Math.floor(prev / 3)
-      const prevSlide = (currentSlide - 1 + maxSlides) % maxSlides
-      return prevSlide * 3
+      const current = Math.floor(prev / 3)
+      return ((current - 1 + maxSlides) % maxSlides) * 3
     })
   }
 
   return (
-    <section id="temoignages" className="py-20 relative reveal bg-gradient-to-b from-transparent to-primary/5">
+    <section id="temoignages" className="py-20 relative bg-gradient-to-b from-transparent to-primary/5">
       <div className="max-w-[1400px] mx-auto px-8">
+
+        {/* Header */}
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Témoignages
@@ -104,74 +94,96 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
             La réussite de mes élèves parle d'elle-même
           </p>
         </div>
-        
-        {/* Carrousel principal - 3 témoignages à la fois */}
+
+        {/* Carousel */}
         <div className="relative max-w-7xl mx-auto mb-12">
           <div className="overflow-hidden">
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${Math.floor(currentIndex / 3) * 100}%)` }}
             >
-              {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0 grid md:grid-cols-3 gap-6 px-4">
-                  {testimonials.slice(slideIndex * 3, slideIndex * 3 + 3).map((testimonial, index) => (
-                    <div key={index} className="card p-8 relative">
-                      <div className="text-6xl mb-4 gradient-text opacity-50 leading-none">"</div>
-                      <p className="text-base italic text-gray-300 mb-6 leading-relaxed min-h-[140px]">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-sm">
-                          {testimonial.avatar}
+              {Array.from({ length: maxSlides }).map((_, slideIndex) => (
+                <div
+                  key={slideIndex}
+                  className="w-full flex-shrink-0 grid md:grid-cols-3 gap-6 px-4"
+                >
+                  {testimonials
+                    .slice(slideIndex * 3, slideIndex * 3 + 3)
+                    .map((testimonial, index) => (
+                      <div
+                        key={index}
+                        className="card p-8 relative flex flex-col justify-between"
+                      >
+                        {/* Guillemet ouvrant */}
+                        <div className="absolute top-6 left-6 text-6xl gradient-text opacity-50 leading-none -rotate-12">
+                          "
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-white">{testimonial.author}</h4>
-                          <p className="text-xs text-textSecondary">{testimonial.role}</p>
-                          <div className="flex gap-1 mt-1 text-yellow-500 text-sm">
-                            ⭐⭐⭐⭐⭐
+
+                        {/* Texte */}
+                        <div className="relative mt-8 mb-6">
+                          <p className="text-base italic text-gray-300 leading-relaxed pb-6">
+                            {testimonial.text}
+                          </p>
+
+                          {/* Guillemet fermant */}
+                          <div className="absolute -bottom-4 right-0 text-6xl gradient-text opacity-50 leading-none rotate-[168deg] pointer-events-none">
+                            "
+                          </div>
+                        </div>
+
+                        {/* Auteur */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-sm">
+                            {testimonial.avatar}
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-white">
+                              {testimonial.author}
+                            </h4>
+                            <p className="text-xs text-textSecondary">
+                              {testimonial.role}
+                            </p>
+                            <div className="flex gap-1 mt-1 text-yellow-500 text-sm">
+                              ⭐⭐⭐⭐⭐
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Boutons de navigation */}
+          {/* Navigation */}
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
             aria-label="Témoignage précédent"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+            ‹
           </button>
+
           <button
             onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
             aria-label="Témoignage suivant"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            ›
           </button>
         </div>
 
-        {/* Indicateurs de pagination */}
+        {/* Pagination */}
         <div className="flex justify-center gap-2">
-          {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, index) => (
+          {Array.from({ length: maxSlides }).map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index * 3)}
+              onClick={() => setCurrentIndex(index * 3)}
               className={`transition-all duration-300 rounded-full ${
                 Math.floor(currentIndex / 3) === index
-                  ? 'w-8 h-3 bg-primary' 
+                  ? 'w-8 h-3 bg-primary'
                   : 'w-3 h-3 bg-primary/30 hover:bg-primary/50'
               }`}
-              aria-label={`Aller à la page ${index + 1}`}
             />
           ))}
         </div>

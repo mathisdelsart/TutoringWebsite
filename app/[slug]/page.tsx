@@ -23,6 +23,7 @@ interface ProfData {
   disponibilites: string
   email: string
   whatsapp: string
+  messenger?: string
   temoignage?: {
     texte: string
     auteur: string
@@ -90,6 +91,7 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
         <Contact
           email={prof.email}
           whatsapp={prof.whatsapp}
+          messenger={prof.messenger}
           nom={prof.nom}
           zone={prof.zone}
           modalites={prof.modalites}

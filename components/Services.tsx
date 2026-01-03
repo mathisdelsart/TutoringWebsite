@@ -8,7 +8,7 @@ export default function Services({ services }: ServicesProps) {
   const subjects = [
     {
       title: 'Mathématiques',
-      levels: '1ère → 6ème Secondaire',
+      levels: '1re → 6e Secondaire',
       levelBadge: '1-6',
       topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie', 'Statistiques'],
       gradient: 'from-indigo-400 via-purple-500 to-pink-500',
@@ -23,7 +23,7 @@ export default function Services({ services }: ServicesProps) {
     },
     {
       title: 'Physique',
-      levels: '3ème → 6ème Secondaire',
+      levels: '3e → 6e Secondaire',
       levelBadge: '3-6',
       topics: ['Électricité', 'Mécanique', 'Optique', 'Ondes', 'Thermodynamique'],
       gradient: 'from-cyan-400 via-blue-500 to-indigo-500',

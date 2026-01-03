@@ -26,7 +26,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
         {/* Radial gradient halo in the center */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-violet-500/5 to-transparent blur-3xl opacity-40" />
 
-        {/* Floating math symbols - very subtle */}
+        {/* Floating maths symbols - very subtle */}
         <div className="absolute top-[30%] left-[45%] text-6xl text-primary/5 font-serif animate-[float_20s_ease-in-out_infinite]">∫</div>
         <div className="absolute top-[60%] left-[50%] text-5xl text-accent/5 font-serif animate-[float_25s_ease-in-out_infinite] animation-delay-5000">π</div>
         <div className="absolute top-[45%] right-[45%] text-4xl text-violet-400/5 font-mono animate-[float_30s_ease-in-out_infinite] animation-delay-10000">→</div>
@@ -105,7 +105,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                   {/* Text */}
                   <div>
                     <div className="text-white font-bold text-xl">Réserver un cours</div>
-                    <div className="text-gray-400 text-sm">Commencez votre transformation</div>
+                    <div className="text-gray-400 text-sm">Commence ta transformation</div>
                   </div>
                 </div>
 
