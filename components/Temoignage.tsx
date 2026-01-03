@@ -94,7 +94,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
   }
 
   return (
-    <section id="temoignages" className="py-20 relative reveal bg-gradient-to-b from-transparent to-primary/5 scroll-mt-64">
+    <section id="temoignages" className="py-20 relative reveal bg-gradient-to-b from-transparent to-primary/5">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">

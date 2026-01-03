@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import Hero from '@/components/Hero'
@@ -34,23 +33,6 @@ function getProfData(): ProfData {
   const filePath = join(process.cwd(), 'data', 'prof.json')
   const fileContents = readFileSync(filePath, 'utf8')
   return JSON.parse(fileContents)
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const prof = getProfData()
-  
-  const title = `Prof de ${prof.matieres.join(' et ')} à ${prof.ville} – ${prof.nom}`
-  const description = `${prof.nom}, professeur particulier de ${prof.matieres.join(' et ')} pour ${prof.niveaux.join(', ')} à ${prof.ville}. ${prof.accroche}`
-  
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: 'profile',
-    },
-  }
 }
 
 export default function ProfPage({ params }: { params: { slug: string } }) {
