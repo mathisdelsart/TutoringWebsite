@@ -21,12 +21,8 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
 
   return (
     <section id="accueil" className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden">
-      {/* Subtle atmospheric background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Radial gradient halo in the center */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-violet-500/5 to-transparent blur-3xl opacity-40" />
-
-        {/* Floating maths symbols - very subtle */}
         <div className="absolute top-[30%] left-[45%] text-6xl text-primary/5 font-serif animate-[float_20s_ease-in-out_infinite]">∫</div>
         <div className="absolute top-[60%] left-[50%] text-5xl text-accent/5 font-serif animate-[float_25s_ease-in-out_infinite] animation-delay-5000">π</div>
         <div className="absolute top-[45%] right-[45%] text-4xl text-violet-400/5 font-mono animate-[float_30s_ease-in-out_infinite] animation-delay-10000">→</div>
@@ -34,9 +30,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
 
       <div className="max-w-[1400px] mx-auto px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-end">
-          {/* Colonne gauche : Titre + Description + CTA + Bloc étendu (stats + citation) */}
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
-            {/* Bloc haut : Titre et description */}
             <div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-6">
                 Transforme tes <span className="gradient-text">difficultés</span><br/>
@@ -53,9 +47,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
               </div>
             </div>
 
-            {/* Bloc bas ÉTENDU : Stats + Citation + Bouton - Layout horizontal étiré */}
             <div className="space-y-6 lg:pr-4">
-              {/* Stats - ÉTENDUS horizontalement */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="card p-5 text-center hover:scale-105 transition-transform duration-300">
                   <div className="text-5xl font-extrabold gradient-text mb-2">85+</div>
@@ -67,7 +59,6 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 </div>
               </div>
 
-              {/* Citation - ÉTENDUE horizontalement */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-violet-500/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative px-8 py-5 rounded-2xl border border-primary/10 bg-gradient-to-br from-white/[0.02] to-transparent backdrop-blur-sm">
@@ -81,49 +72,31 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 </div>
               </div>
 
-              {/* CTA Button - EN BAS, après la maxime, ÉTENDU horizontalement */}
               <a
                 href="#contact"
-                className="group relative flex items-center justify-between px-8 py-6 rounded-2xl
-                  bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/10
-                  hover:from-primary/20 hover:via-secondary/20 hover:to-primary/20
-                  border-2 border-primary/30 hover:border-primary/60
-                  backdrop-blur-sm
-                  shadow-[0_0_40px_rgba(99,102,241,0.2)] hover:shadow-[0_0_60px_rgba(99,102,241,0.4)]
-                  transition-all duration-500
-                  hover:scale-[1.02] active:scale-100"
+                className="group relative flex items-center justify-between px-8 py-6 rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/10 hover:from-primary/20 hover:via-secondary/20 hover:to-primary/20 border-2 border-primary/30 hover:border-primary/60 backdrop-blur-sm shadow-[0_0_40px_rgba(99,102,241,0.2)] hover:shadow-[0_0_60px_rgba(99,102,241,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-100"
               >
                 <div className="flex items-center gap-4">
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center
-                    shadow-lg group-hover:shadow-primary/50 transition-all duration-300 group-hover:scale-110">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg group-hover:shadow-primary/50 transition-all duration-300 group-hover:scale-110">
                     <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-
-                  {/* Text */}
                   <div>
                     <div className="text-white font-bold text-xl">Réserver un cours</div>
                     <div className="text-gray-400 text-sm">Commence ta transformation</div>
                   </div>
                 </div>
-
-                {/* Arrow indicator */}
                 <svg className="w-6 h-6 text-primary group-hover:text-white group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-
-                {/* Glow effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-white/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </a>
             </div>
           </div>
 
-          {/* Profile Card - Simple et humaine */}
           <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
             <div className="card p-0 overflow-hidden">
-              {/* Profile Image - Naturelle sans overlay, hauteur légèrement augmentée */}
               <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src="/face_image.jpeg"
@@ -138,12 +111,9 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 />
               </div>
 
-              {/* Profile Info */}
               <div className="p-6 space-y-4">
-                {/* Nom */}
                 <h3 className="text-2xl font-bold text-white">{nom}</h3>
 
-                {/* Modalités */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                     <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +126,6 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                   </div>
                 </div>
 
-                {/* Disponibilité */}
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
                     <svg
@@ -184,7 +153,6 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                   </div>
                 </div>
 
-                {/* Localisation - Clickable to Google Maps */}
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Gouy-Lez-Piéton,+Belgique"
                   target="_blank"

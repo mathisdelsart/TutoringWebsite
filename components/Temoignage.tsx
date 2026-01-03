@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function Temoignage() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -84,8 +85,6 @@ export default function Temoignage() {
   return (
     <section id="temoignages" className="py-20 relative bg-gradient-to-b from-transparent to-primary/5">
       <div className="max-w-[1400px] mx-auto px-8">
-
-        {/* Header */}
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Témoignages
@@ -95,7 +94,6 @@ export default function Temoignage() {
           </p>
         </div>
 
-        {/* Carousel */}
         <div className="relative max-w-7xl mx-auto mb-12">
           <div className="overflow-hidden">
             <div
@@ -110,28 +108,16 @@ export default function Temoignage() {
                   {testimonials
                     .slice(slideIndex * 3, slideIndex * 3 + 3)
                     .map((testimonial, index) => (
-                      <div
-                        key={index}
-                        className="card p-8 relative flex flex-col justify-between"
-                      >
-                        {/* Guillemet ouvrant */}
-                        <div className="absolute top-6 left-6 text-6xl gradient-text opacity-50 leading-none -rotate-12">
-                          "
-                        </div>
+                      <div key={index} className="card p-8 relative flex flex-col justify-between">
+                        <div className="absolute top-6 left-6 text-6xl gradient-text opacity-50 leading-none -rotate-12">"</div>
 
-                        {/* Texte */}
                         <div className="relative mt-8 mb-6">
                           <p className="text-base italic text-gray-300 leading-relaxed pb-6">
                             {testimonial.text}
                           </p>
-
-                          {/* Guillemet fermant */}
-                          <div className="absolute -bottom-4 right-0 text-6xl gradient-text opacity-50 leading-none rotate-[168deg] pointer-events-none">
-                            "
-                          </div>
+                          <div className="absolute -bottom-4 right-0 text-6xl gradient-text opacity-50 leading-none rotate-[168deg] pointer-events-none">"</div>
                         </div>
 
-                        {/* Auteur */}
                         <div className="flex items-center gap-3">
                           <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-sm">
                             {testimonial.avatar}
@@ -155,25 +141,23 @@ export default function Temoignage() {
             </div>
           </div>
 
-          {/* Navigation */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-14 h-14 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm text-white"
             aria-label="Témoignage précédent"
           >
-            ‹
+            <ChevronLeft className="w-8 h-8" strokeWidth={2.5} />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-14 h-14 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm text-white"
             aria-label="Témoignage suivant"
           >
-            ›
+            <ChevronRight className="w-8 h-8" strokeWidth={2.5} />
           </button>
         </div>
 
-        {/* Pagination */}
         <div className="flex justify-center gap-2">
           {Array.from({ length: maxSlides }).map((_, index) => (
             <button
