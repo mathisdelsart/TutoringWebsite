@@ -101,13 +101,11 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 <Image
                   src="/face_image.jpeg"
                   alt={nom}
-                  fill
-                  className="object-cover"
+                  width={400}
+                  height={380}
+                  className="object-cover w-full h-full"
                   priority
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.style.display = 'none'
-                  }}
+                  unoptimized
                 />
               </div>
 
