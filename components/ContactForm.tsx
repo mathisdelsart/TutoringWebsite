@@ -6,10 +6,11 @@ import { Mail, MessageCircle, MessagesSquare, Home, Video, Calculator, Lightbulb
 interface ContactFormProps {
   email: string
   whatsapp: string
+  messenger?: string
   nom: string
 }
 
-export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) {
+export default function ContactForm({ email, whatsapp, messenger, nom }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     subjects: [] as string[],
@@ -76,7 +77,9 @@ Merci pour votre attention !`
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'messenger') {
-      window.open('https://m.me/votreprofil', '_blank')
+      if (messenger) {
+        window.open(`https://m.me/${messenger}`, '_blank')
+      }
     } else if (platform === 'email') {
       const emailSubject = encodeURIComponent(`Demande de cours - ${subjectsText}`)
       const emailBody = encodeURIComponent(message)

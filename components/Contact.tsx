@@ -18,7 +18,7 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
   const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
-  const messengerLink = messenger ? `https://m.me/${messenger}` : `fb-messenger://user/${messenger || ''}`
+  const messengerLink = messenger ? `https://m.me/${messenger}` : '#'
 
   const contactMethods = [
     {
@@ -95,7 +95,7 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
         </div>
 
         {showForm ? (
-          <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
+          <ContactForm email={email} whatsapp={whatsapp} messenger={messenger} nom={nom} />
         ) : (
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

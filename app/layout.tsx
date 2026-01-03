@@ -4,8 +4,9 @@ import { Outfit } from 'next/font/google'
 const outfit = Outfit({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'PageProf - Professeur Particulier Moderne',
-  description: 'Trouvez votre professeur particulier avec une landing page qui fait la différence',
+  title: 'Mathis Delsart | Professeur particulier en maths, physique & Python',
+  description:
+    'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).'
 }
 
 export default function RootLayout({

@@ -3,7 +3,14 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export default function Temoignage() {
+interface TemoignageProps {
+  temoignage?: {
+    texte: string
+    auteur: string
+  }
+}
+
+export default function Temoignage({ temoignage }: TemoignageProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const testimonials = [
