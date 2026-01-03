@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Sigma, Pi } from 'lucide-react'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -18,8 +19,20 @@ export default function Navigation() {
       isScrolled ? 'bg-background/80' : 'bg-transparent'
     } backdrop-blur-xl border-b border-primary/20`}>
       <div className="max-w-[1400px] mx-auto px-8 flex justify-between items-center py-6">
-        <div className="font-mono text-2xl font-bold gradient-text animate-[glow_3s_ease-in-out_infinite]">
-          ∫ MATH·PHYS ∫
+        <div className="flex items-center gap-3 group">
+          <div className="relative">
+            <Sigma className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300" strokeWidth={2.5} />
+            <div className="absolute inset-0 blur-xl bg-primary/30 group-hover:bg-accent/30 transition-colors duration-300" />
+          </div>
+          <div className="font-display text-2xl font-bold tracking-tight">
+            <span className="gradient-text">MATHS</span>
+            <span className="text-white/40 mx-2">×</span>
+            <span className="gradient-text">PHYSIQUE</span>
+          </div>
+          <div className="relative">
+            <Pi className="w-6 h-6 text-accent group-hover:text-primary transition-colors duration-300" strokeWidth={2.5} />
+            <div className="absolute inset-0 blur-xl bg-accent/30 group-hover:bg-primary/30 transition-colors duration-300" />
+          </div>
         </div>
         <ul className="hidden md:flex gap-12 list-none">
           {[['Accueil', 'accueil'], ['Matières', 'matieres'], ['Méthode', 'methode'], ['Témoignages', 'temoignages'], ['Contact', 'contact']].map(([label, id]) => (

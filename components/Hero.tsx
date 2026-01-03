@@ -33,29 +33,55 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
       </div>
 
       <div className="max-w-[1400px] mx-auto px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-end">
           {/* Colonne gauche : Titre + Description + CTA + Bloc étendu (stats + citation) */}
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             {/* Bloc haut : Titre et description */}
             <div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-6">
                 Transforme tes <span className="gradient-text">difficultés</span><br/>
-                en <span className="gradient-text">réussites</span>
+                en <span className="gradient-text">réussites</span> durables
               </h1>
 
               <div className="space-y-3 max-w-xl mb-8">
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                  Ingénieur civil en Informatique & IA, passionné par l'enseignement.
-                </p>
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed whitespace-nowrap">
+  Ingénieur civil en Informatique & IA, passionné par l'enseignement.
+</p>
                 <p className="text-base md:text-lg text-gray-400 leading-relaxed">
                   Pédagogie moderne et personnalisée pour atteindre tes objectifs.
                 </p>
               </div>
             </div>
 
-            {/* Bloc bas ÉTENDU : Bouton + Stats + Citation - Layout horizontal étiré */}
+            {/* Bloc bas ÉTENDU : Stats + Citation + Bouton - Layout horizontal étiré */}
             <div className="space-y-6 lg:pr-4">
-              {/* CTA Button - ÉTENDU horizontalement sur toute la largeur disponible */}
+              {/* Stats - ÉTENDUS horizontalement */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="card p-5 text-center hover:scale-105 transition-transform duration-300">
+                  <div className="text-5xl font-extrabold gradient-text mb-2">85+</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide font-semibold">Élèves accompagnés</div>
+                </div>
+                <div className="card p-5 text-center hover:scale-105 transition-transform duration-300">
+                  <div className="text-5xl font-extrabold gradient-text mb-2">+3</div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide font-semibold">Années d'expérience</div>
+                </div>
+              </div>
+
+              {/* Citation - ÉTENDUE horizontalement */}
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-violet-500/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative px-8 py-5 rounded-2xl border border-primary/10 bg-gradient-to-br from-white/[0.02] to-transparent backdrop-blur-sm">
+                  <p className="text-base font-light italic text-gray-300 leading-relaxed tracking-wide text-center">
+                    <span className="text-primary/60 text-xl font-serif">"</span>
+                    L'excellence n'est pas une destination,
+                    <br />
+                    c'est un <span className="text-white font-medium bg-gradient-to-r from-primary/20 to-accent/20 px-2 py-1 rounded">voyage continu</span>
+                    <span className="text-primary/60 text-xl font-serif">"</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA Button - EN BAS, après la maxime, ÉTENDU horizontalement */}
               <a
                 href="#contact"
                 className="group relative flex items-center justify-between px-8 py-6 rounded-2xl
@@ -91,40 +117,14 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 {/* Glow effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-white/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </a>
-
-              {/* Stats - ÉTENDUS horizontalement, même largeur que le bouton */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="card p-5 text-center hover:scale-105 transition-transform duration-300">
-                  <div className="text-5xl font-extrabold gradient-text mb-2">85+</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide font-semibold">Élèves accompagnés</div>
-                </div>
-                <div className="card p-5 text-center hover:scale-105 transition-transform duration-300">
-                  <div className="text-5xl font-extrabold gradient-text mb-2">+3</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide font-semibold">Années d'expérience</div>
-                </div>
-              </div>
-
-              {/* Citation - ÉTENDUE horizontalement, même largeur que le bouton */}
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-violet-500/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative px-8 py-5 rounded-2xl border border-primary/10 bg-gradient-to-br from-white/[0.02] to-transparent backdrop-blur-sm">
-                  <p className="text-base font-light italic text-gray-300 leading-relaxed tracking-wide text-center">
-                    <span className="text-primary/60 text-xl font-serif">"</span>
-                    L'excellence n'est pas une destination,
-                    <br />
-                    c'est un <span className="text-white font-medium bg-gradient-to-r from-primary/20 to-accent/20 px-2 py-1 rounded">voyage continu</span>
-                    <span className="text-primary/60 text-xl font-serif">"</span>
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Profile Card - Simple et humaine */}
           <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
             <div className="card p-0 overflow-hidden">
-              {/* Profile Image - Naturelle sans overlay */}
-              <div className="relative w-full aspect-[4/3.5] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+              {/* Profile Image - Naturelle sans overlay, hauteur légèrement augmentée */}
+              <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src="/face_image.jpeg"
                   alt={nom}

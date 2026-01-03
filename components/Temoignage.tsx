@@ -74,65 +74,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
       avatar: "T"
     }
   ]
-
-  // const testimonials = [
-  //   {
-  //     text: "Incroyable progression ! Je suis passé de 11/20 à 17/20 en maths en quelques mois. Les méthodes sont claires et efficaces, je recommande à 200% !",
-  //     author: "Alexandre M.",
-  //     role: "Terminale S",
-  //     avatar: "AM"
-  //   },
-  //   {
-  //     text: "Un professeur exceptionnel ! Ma fille a retrouvé confiance en elle et adore maintenant les sciences. Pédagogue, patient et à l'écoute.",
-  //     author: "Sophie L.",
-  //     role: "Parent d'élève",
-  //     avatar: "SL"
-  //   },
-  //   {
-  //     text: "Le meilleur prof que j'ai eu ! Explications ultra précises, exercices adaptés à mon niveau en prépa. J'ai enfin tout compris. Merci infiniment !",
-  //     author: "Thomas C.",
-  //     role: "Prépa MPSI",
-  //     avatar: "TC"
-  //   },
-  //   {
-  //     text: "Grâce aux cours, j'ai enfin compris les maths. La pédagogie est top, les explications sont claires et j'ai repris confiance. Mes notes ont beaucoup augmenté !",
-  //     author: "Emma D.",
-  //     role: "Première",
-  //     avatar: "ED"
-  //   },
-  //   {
-  //     text: "Mon fils était en difficulté en physique. Après quelques mois de cours, il a eu 16 au bac ! Un grand merci pour votre patience et votre expertise.",
-  //     author: "Marc R.",
-  //     role: "Parent d'élève",
-  //     avatar: "MR"
-  //   },
-  //   {
-  //     text: "Des cours de qualité qui m'ont permis de réussir mes partiels. Les concepts complexes deviennent accessibles. Je recommande vivement !",
-  //     author: "Léa B.",
-  //     role: "Licence Physique",
-  //     avatar: "LB"
-  //   },
-  //   {
-  //     text: "Excellente pédagogie ! J'étais perdu en trigonométrie, maintenant c'est devenu facile. Les exercices sont bien choisis et progressifs.",
-  //     author: "Hugo F.",
-  //     role: "Seconde",
-  //     avatar: "HF"
-  //   },
-  //   {
-  //     text: "Super prof ! Patient, à l'écoute et toujours disponible pour réexpliquer. Ma moyenne est passée de 10 à 15. Un vrai changement !",
-  //     author: "Chloé V.",
-  //     role: "Troisième",
-  //     avatar: "CV"
-  //   },
-  //   {
-  //     text: "Les cours m'ont sauvé pour le bac. J'ai compris des choses que je n'avais jamais comprises en classe. Résultat : mention bien !",
-  //     author: "Lucas P.",
-  //     role: "Terminale",
-  //     avatar: "LP"
-  //   }
-  // ]
-
-
+  
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
   }
@@ -152,7 +94,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
   }
 
   return (
-    <section id="temoignages" className="py-20 relative reveal bg-gradient-to-b from-transparent to-primary/5">
+    <section id="temoignages" className="py-20 relative reveal bg-gradient-to-b from-transparent to-primary/5 scroll-mt-64">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
