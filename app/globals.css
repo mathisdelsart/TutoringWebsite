@@ -65,6 +65,15 @@ body {
   animation: bgFlowRight 25s ease-in-out infinite reverse;
 }
 
+/* Optimisations mobile - réduire les effets coûteux */
+@media (max-width: 768px) {
+  .animated-bg::before,
+  .animated-bg::after {
+    filter: blur(40px);
+    opacity: 0.7;
+  }
+}
+
 @keyframes bgFlowLeft {
   0%, 100% {
     transform: translate(0%, 0%) scale(1);
@@ -169,6 +178,25 @@ body {
   bottom: 15%;
   right: -12%;
   animation: floatRight 18s ease-in-out infinite reverse;
+}
+
+/* Optimisations mobile */
+@media (max-width: 768px) {
+  .floating-orbs::before,
+  .floating-orbs::after {
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+
+  .floating-orbs::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .floating-orbs::after {
+    width: 320px;
+    height: 320px;
+  }
 }
 
 @keyframes floatLeft {
@@ -482,4 +510,39 @@ img {
 .backdrop-enhanced {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Optimisations mobiles globales */
+@media (max-width: 768px) {
+  /* Réduire les blur coûteux sur mobile */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px) !important;
+  }
+
+  /* Désactiver certaines animations sur mobile */
+  .card-hover:hover {
+    transform: translateY(-3px) scale(1.005);
+  }
+
+  /* Optimiser les transitions */
+  * {
+    transition-duration: 0.2s !important;
+  }
+
+  /* Améliorer la lisibilité du texte */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Performance : réduire animations si batterie faible ou préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

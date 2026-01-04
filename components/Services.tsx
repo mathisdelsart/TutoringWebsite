@@ -54,39 +54,39 @@ export default function Services({ services }: ServicesProps) {
   ]
 
   return (
-    <section id="matieres" className="py-20 relative reveal">
-      <div className="max-w-[1400px] mx-auto px-8">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+    <section id="matieres" className="py-12 sm:py-16 lg:py-20 relative reveal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Mes Spécialités
           </h2>
-          <p className="text-xl text-textSecondary max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
             Maths, Physique & Programmation • Un accompagnement complet et sur-mesure
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8">
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-3xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Pulsing neon border */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${subject.borderGradient} rounded-3xl opacity-50 group-hover:opacity-100 blur-sm animate-[pulse_2s_ease-in-out_infinite]`}></div>
-              
-              {/* Intense glow on hover */}
-              <div className={`absolute -inset-4 bg-gradient-to-r ${subject.borderGradient} rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-500`}></div>
-              
-              {/* Shine effect that traverses the card */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+              {/* Pulsing neon border - Réduit sur mobile */}
+              <div className={`absolute -inset-1 bg-gradient-to-r ${subject.borderGradient} rounded-2xl sm:rounded-3xl opacity-50 group-hover:opacity-100 blur-sm animate-[pulse_2s_ease-in-out_infinite]`}></div>
+
+              {/* Intense glow on hover - Désactivé sur mobile pour performance */}
+              <div className={`hidden sm:block absolute -inset-4 bg-gradient-to-r ${subject.borderGradient} rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-500`}></div>
+
+              {/* Shine effect that traverses the card - Désactivé sur mobile */}
+              <div className="hidden sm:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out" style={{ animationDelay: `${index * 0.3}s` }}></div>
               </div>
 
               {/* Glassmorphism card */}
-              <div className="relative backdrop-blur-xl bg-white/5 rounded-3xl p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500">
-                {/* Animated floating particles */}
-                <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+              <div className="relative backdrop-blur-xl bg-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 xl:p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500">
+                {/* Animated floating particles - Désactivé sur mobile */}
+                <div className="hidden sm:block absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={i}
@@ -104,62 +104,62 @@ export default function Services({ services }: ServicesProps) {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Header with LARGE prominent level badge */}
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-4 sm:mb-6">
                     <div className="relative">
-                      {/* Colored background effect */}
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} opacity-20 blur-xl rounded-lg`}></div>
-                      <h3 className="relative text-3xl font-extrabold text-white drop-shadow-lg">
+                      {/* Colored background effect - Réduit sur mobile */}
+                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} opacity-20 blur-lg sm:blur-xl rounded-lg`}></div>
+                      <h3 className="relative text-xl sm:text-2xl lg:text-3xl font-extrabold text-white drop-shadow-lg">
                         {subject.title}
                       </h3>
                     </div>
                     <div className="relative group/badge">
-                      {/* Badge glow */}
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} rounded-2xl opacity-50 blur-lg group-hover:opacity-80 transition-opacity duration-300`}></div>
-                      <div className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${subject.gradient} shadow-2xl transform group-hover:scale-104 group-hover:rotate-6 transition-all duration-300`}>
-                        <span className="text-2xl font-black text-white drop-shadow-md">{subject.levelBadge}</span>
+                      {/* Badge glow - Réduit sur mobile */}
+                      <div className={`hidden sm:block absolute -inset-2 bg-gradient-to-r ${subject.gradient} rounded-2xl opacity-50 blur-lg group-hover:opacity-80 transition-opacity duration-300`}></div>
+                      <div className={`relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${subject.gradient} shadow-2xl transform group-hover:scale-104 group-hover:rotate-6 transition-all duration-300`}>
+                        <span className="text-lg sm:text-xl lg:text-2xl font-black text-white drop-shadow-md">{subject.levelBadge}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Level description */}
-                  <p className="text-base text-gray-300 font-semibold mb-6">
+                  <p className="text-sm sm:text-base text-gray-300 font-semibold mb-4 sm:mb-6">
                     {subject.levels}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
                     {subject.topics.map((topic, i) => (
                       <span
                         key={i}
-                        className="px-3 py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-sm font-medium text-white hover:bg-white/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                        className="px-2 sm:px-3 py-1.5 sm:py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-xs sm:text-sm font-medium text-white hover:bg-white/20 sm:hover:scale-110 sm:hover:-translate-y-1 transition-all duration-300 cursor-pointer"
                       >
                         {topic}
                       </span>
                     ))}
 
                     {/* Ellipsis indicator */}
-                    <span className="px-2 py-2 text-sm italic text-white/50 select-none">
+                    <span className="px-2 py-1.5 sm:py-2 text-xs sm:text-sm italic text-white/50 select-none">
                       … et bien plus
                     </span>
                   </div>
 
                   {/* Benefits list with staggered check animations */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3">
                     {subject.benefits.map((benefit, i) => (
-                      <li 
-                        key={i} 
-                        className="flex items-start gap-3 text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 sm:gap-3 text-gray-300 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-500"
                         style={{ transitionDelay: `${i * 100}ms` }}
                       >
-                        <svg 
-                          className={`w-6 h-6 text-${subject.glowColor}-400 flex-shrink-0 mt-0.5 animate-[pulse_2s_ease-in-out_infinite]`}
+                        <svg
+                          className={`w-5 h-5 sm:w-6 sm:h-6 text-${subject.glowColor}-400 flex-shrink-0 mt-0.5 sm:animate-[pulse_2s_ease-in-out_infinite]`}
                           style={{ animationDelay: `${i * 0.2}s` }}
-                          fill="none" 
-                          stroke="currentColor" 
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-base leading-relaxed">{benefit}</span>
+                        <span className="text-sm sm:text-base leading-relaxed">{benefit}</span>
                       </li>
                     ))}
                   </ul>

@@ -337,24 +337,24 @@ Merci pour votre attention !`
                 <label className="block text-sm font-medium text-gray-300 mb-3">
                   Fréquence souhaitée (optionnel)
                 </label>
-                <div className="card p-4 bg-white/5 border-primary/20">
-                  <div className="flex items-center gap-3">
+                <div className="card p-3 sm:p-4 bg-white/5 border-primary/20">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                     <input
                       type="number"
                       min="1"
                       max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
-                      className="w-24 px-4 py-3 bg-background/50 border border-primary/40 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-white text-center font-semibold transition-all text-lg"
+                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-background/50 border border-primary/40 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-white text-center font-semibold transition-all text-base sm:text-lg"
                       placeholder="2"
                     />
-                    <span className="text-gray-300 font-medium">×</span>
-                    <span className="text-gray-400">par</span>
+                    <span className="hidden sm:inline text-gray-300 font-medium">×</span>
+                    <span className="hidden sm:inline text-gray-400 text-sm">par</span>
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => updateFormData('frequencyPeriod', 'semaine')}
-                        className={`px-4 py-3 rounded-xl border-2 transition-all duration-300 text-sm font-medium ${
+                        className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'semaine'
                             ? 'border-primary bg-primary/20 text-white'
                             : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
@@ -365,7 +365,7 @@ Merci pour votre attention !`
                       <button
                         type="button"
                         onClick={() => updateFormData('frequencyPeriod', 'mois')}
-                        className={`px-4 py-3 rounded-xl border-2 transition-all duration-300 text-sm font-medium ${
+                        className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'mois'
                             ? 'border-primary bg-primary/20 text-white'
                             : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
@@ -375,7 +375,7 @@ Merci pour votre attention !`
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-3 text-center">Laissez vide pour discuter ensemble de la fréquence</p>
+                  <p className="text-xs text-gray-500 mt-2 sm:mt-3 text-center">Laissez vide pour discuter ensemble de la fréquence</p>
                 </div>
               </div>
             )}
