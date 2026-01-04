@@ -18,7 +18,8 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
   const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
-  const messengerLink = messenger ? `https://m.me/${messenger}` : '#'
+  // Format universel pour Messenger (fonctionne sur mobile et desktop)
+  const messengerLink = messenger ? `https://www.facebook.com/messages/t/${messenger}` : '#'
 
   const contactMethods = [
     {

@@ -86,7 +86,7 @@ Merci pour votre attention !`
           setShowCopyNotification(true)
           // Attendre 2 secondes pour que l'utilisateur voie bien la notification
           setTimeout(() => {
-            window.open(`https://m.me/${messenger}`, '_blank')
+            window.open(`https://www.facebook.com/messages/t/${messenger}`, '_blank')
           }, 2500)
           // Masquer la notification après 5 secondes
           setTimeout(() => setShowCopyNotification(false), 5000)
@@ -94,7 +94,7 @@ Merci pour votre attention !`
           // Fallback si le clipboard API ne fonctionne pas
           console.error('Erreur copie presse-papiers:', err)
           alert('⚠️ Messenger va s\'ouvrir.\n\nVeuillez copier manuellement votre message avant de continuer.')
-          window.open(`https://m.me/${messenger}`, '_blank')
+          window.open(`https://www.facebook.com/messages/t/${messenger}`, '_blank')
         }
       }
     } else if (platform === 'email') {
