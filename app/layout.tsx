@@ -13,9 +13,9 @@ export const metadata = {
       'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).',
     images: [
       {
-        url: 'https://mathis003.github.io/cours-particuliers/app-image.png?v=2',
-        width: 1200,
-        height: 630,
+        url: 'https://mathis003.github.io/cours-particuliers/app-image.png?v=3',
+        width: 2500,
+        height: 1550,
         alt: 'Mathis Delsart – Professeur particulier',
       },
     ],

@@ -152,7 +152,7 @@ Merci pour votre attention !`
   }
 
   const subjects = [
-    { name: 'Mathématiques', icon: Calculator, color: 'from-indigo-500 to-purple-600' },
+    { name: 'Maths', icon: Calculator, color: 'from-indigo-500 to-purple-600' },
     { name: 'Physique', icon: Lightbulb, color: 'from-cyan-500 to-blue-600' },
     { name: 'Python', icon: Code, color: 'from-emerald-500 to-teal-600' }
   ]
