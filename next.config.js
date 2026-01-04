@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
+  basePath: process.env.NODE_ENV === "production" ? "/PageProf" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/PageProf" : "",
   images: {
     unoptimized: true,
   },
