@@ -28,8 +28,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-4 sm:mb-6">
-                Transforme tes <span className="gradient-text">difficultés</span><br/>
-                en <span className="gradient-text">réussites</span> durables
+                Transforme tes <span className="gradient-text">difficultés</span> en <span className="gradient-text">réussites</span>
               </h1>
 
               <div className="space-y-2 sm:space-y-3 max-w-xl mb-6 sm:mb-8">
