@@ -24,8 +24,9 @@ export default function ContactForm({ email, whatsapp, messenger, nom }: Contact
   })
 
   const [step, setStep] = useState(1)
+  const [showCopyNotification, setShowCopyNotification] = useState(false)
 
-  const handleSubmit = (platform: 'whatsapp' | 'messenger' | 'email') => {
+  const handleSubmit = async (platform: 'whatsapp' | 'messenger' | 'email') => {
     const subjectsText = formData.subjects.join(' + ')
     const frequencyText = formData.frequencyNumber
       ? `${formData.frequencyNumber} fois / ${formData.frequencyPeriod}`
@@ -78,7 +79,23 @@ Merci pour votre attention !`
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'messenger') {
       if (messenger) {
-        window.open(`https://m.me/${messenger}`, '_blank')
+        // Messenger ne supporte pas le pré-remplissage via URL
+        // On copie le message dans le presse-papiers
+        try {
+          await navigator.clipboard.writeText(message)
+          setShowCopyNotification(true)
+          // Attendre 2 secondes pour que l'utilisateur voie bien la notification
+          setTimeout(() => {
+            window.open(`https://m.me/${messenger}`, '_blank')
+          }, 2500)
+          // Masquer la notification après 5 secondes
+          setTimeout(() => setShowCopyNotification(false), 5000)
+        } catch (err) {
+          // Fallback si le clipboard API ne fonctionne pas
+          console.error('Erreur copie presse-papiers:', err)
+          alert('⚠️ Messenger va s\'ouvrir.\n\nVeuillez copier manuellement votre message avant de continuer.')
+          window.open(`https://m.me/${messenger}`, '_blank')
+        }
       }
     } else if (platform === 'email') {
       const emailSubject = encodeURIComponent(`Demande de cours - ${subjectsText}`)
@@ -108,6 +125,23 @@ Merci pour votre attention !`
 
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
+      {/* Notification de copie pour Messenger */}
+      {showCopyNotification && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 pointer-events-none">
+          <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-10 py-6 rounded-3xl shadow-2xl flex items-center gap-5 border-2 border-white/20 animate-[fadeInUp_0.3s_ease-out] pointer-events-auto max-w-lg">
+            <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <div className="font-bold text-xl mb-1">Message copié !</div>
+              <div className="text-base text-white/95">Colle-le dans Messenger (Ctrl+V ou Cmd+V)</div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <h3 className="text-2xl font-bold text-white mb-2">Demande de cours</h3>
       <p className="text-gray-400 mb-6 text-sm">Remplis ce formulaire pour me contacter directement</p>
 
@@ -274,7 +308,7 @@ Merci pour votre attention !`
                     <input
                       type="number"
                       min="1"
-                      max="10"
+                      max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
                       className="w-24 px-4 py-3 bg-background/50 border border-primary/40 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-white text-center font-semibold transition-all text-lg"
