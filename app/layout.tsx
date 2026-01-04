@@ -8,12 +8,12 @@ export const metadata = {
   description:
     'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).',
   openGraph: {
-    title: 'Mathis Delsart | Professeur particulier',
+    title: 'Mathis Delsart | Professeur particulier en maths, physique & Python',
     description:
-      'Maths • Physique • Python • Secondaire • À domicile ou en ligne • Belgique',
+      'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).',
     images: [
       {
-        url: '/app-image.png',
+        url: 'https://mathis003.github.io/cours-particuliers/app-image.png',
         width: 1200,
         height: 630,
         alt: 'Mathis Delsart – Professeur particulier',
