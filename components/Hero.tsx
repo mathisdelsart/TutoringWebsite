@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { assetPath } from '@/lib/assetPath'
 
 interface HeroProps {
   nom: string
@@ -99,7 +100,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
             <div className="card p-0 overflow-hidden">
               <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
-                  src="/face_image.jpeg"
+                  src={assetPath('/face_image.jpeg')}
                   alt={nom}
                   width={400}
                   height={380}

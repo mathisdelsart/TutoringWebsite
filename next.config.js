@@ -4,6 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // basePath sera injecté automatiquement par actions/configure-pages
+  // En local, il sera undefined (ce qui est correct)
 };
 
 module.exports = nextConfig;
