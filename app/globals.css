@@ -560,10 +560,11 @@ img {
     text-size-adjust: 100%;
   }
 
-  /* FIX CRITIQUE: Forcer les titres en blanc au lieu de gradient transparent sur mobile */
-  h2.bg-gradient-to-r,
-  h2[class*="bg-gradient"],
-  .text-transparent {
+  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc au lieu de gradient transparent sur mobile */
+  /* NE PAS affecter les spans .gradient-text dans le titre principal Hero */
+  section > div > h2.bg-gradient-to-r,
+  section > div > h2[class*="bg-gradient"],
+  section > div > h2.text-transparent {
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
     background-clip: unset !important;
