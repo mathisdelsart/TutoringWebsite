@@ -105,7 +105,41 @@ Merci pour votre attention !`
   }
 
   const updateFormData = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value }
+
+      // Validation pour la fréquence
+      if (field === 'frequencyNumber') {
+        const maxValue = prev.frequencyPeriod === 'semaine' ? 4 : 8
+        const numValue = parseInt(value, 10)
+
+        // Ne valider que si c'est un nombre valide
+        if (!isNaN(numValue)) {
+          if (numValue < 1) {
+            newData.frequencyNumber = '1'
+          } else if (numValue > maxValue) {
+            newData.frequencyNumber = maxValue.toString()
+          } else {
+            newData.frequencyNumber = value
+          }
+        } else {
+          // Permettre la saisie vide temporaire
+          newData.frequencyNumber = value
+        }
+      }
+
+      // Si on change la période, vérifier que la fréquence est toujours valide
+      if (field === 'frequencyPeriod') {
+        const maxValue = value === 'semaine' ? 4 : 8
+        const currentNum = parseInt(prev.frequencyNumber, 10)
+
+        if (!isNaN(currentNum) && currentNum > maxValue) {
+          newData.frequencyNumber = maxValue.toString()
+        }
+      }
+
+      return newData
+    })
   }
 
   const toggleSubject = (subject: string) => {
