@@ -22,12 +22,6 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
 
   return (
     <section id="accueil" className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-violet-500/5 to-transparent blur-3xl opacity-40" />
-        <div className="absolute top-[30%] left-[45%] text-6xl text-primary/5 font-serif animate-[float_20s_ease-in-out_infinite]">∫</div>
-        <div className="absolute top-[60%] left-[50%] text-5xl text-accent/5 font-serif animate-[float_25s_ease-in-out_infinite] animation-delay-5000">π</div>
-        <div className="absolute top-[45%] right-[45%] text-4xl text-violet-400/5 font-mono animate-[float_30s_ease-in-out_infinite] animation-delay-10000">→</div>
-      </div>
 
       <div className="max-w-[1400px] mx-auto px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-end">

@@ -72,7 +72,7 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
       <Navigation />
       <SmoothScroll />
       
-      <main className="min-h-screen relative z-10">
+      <main className="min-h-screen relative z-10" style={{ position: 'relative', zIndex: 10 }}>
         <Hero
           nom={prof.nom}
           matieres={prof.matieres}
