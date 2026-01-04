@@ -31,10 +31,10 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 Transforme tes <span className="gradient-text">difficultés</span> en <span className="gradient-text">réussites</span>
               </h1>
 
-              <div className="space-y-2 sm:space-y-3 max-w-xl mb-6 sm:mb-8">
-                <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed break-words">
-  Ingénieur civil en Informatique & IA, passionné par l'enseignement.
-</p>
+              <div className="space-y-2 sm:space-y-3 max-w-2xl mb-6 sm:mb-8">
+                <p className="text-base sm:text-lg lg:text-[17px] xl:text-lg text-gray-300 leading-relaxed">
+                  Ingénieur civil en Informatique & IA, passionné par l'enseignement.
+                </p>
                 <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed">
                   Pédagogie moderne et personnalisée pour atteindre tes objectifs.
                 </p>

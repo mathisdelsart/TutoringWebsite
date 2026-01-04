@@ -12,7 +12,7 @@ interface TemoignageProps {
 
 export default function Temoignage({ temoignage }: TemoignageProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const [itemsPerSlide, setItemsPerSlide] = useState(3)
 
   useEffect(() => {
@@ -97,14 +97,25 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
   const maxSlides = Math.ceil(testimonials.length / itemsPerSlide)
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => ((Math.floor(prev / itemsPerSlide) + 1) % maxSlides) * itemsPerSlide)
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentIndex((prev) => {
+      const currentSlide = Math.floor(prev / itemsPerSlide)
+      const nextSlide = (currentSlide + 1) % maxSlides
+      return nextSlide * itemsPerSlide
+    })
+    setTimeout(() => setIsTransitioning(false), 500)
   }
 
   const prevSlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
     setCurrentIndex((prev) => {
-      const current = Math.floor(prev / itemsPerSlide)
-      return ((current - 1 + maxSlides) % maxSlides) * itemsPerSlide
+      const currentSlide = Math.floor(prev / itemsPerSlide)
+      const prevSlide = (currentSlide - 1 + maxSlides) % maxSlides
+      return prevSlide * itemsPerSlide
     })
+    setTimeout(() => setIsTransitioning(false), 500)
   }
 
   return (
@@ -122,7 +133,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
         <div className="relative max-w-7xl mx-auto mb-8 sm:mb-12">
           <div className="overflow-hidden px-2 sm:px-0">
             <div
-              className="flex transition-transform duration-500 ease-out"
+              className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-out' : ''}`}
               style={{ transform: `translateX(-${Math.floor(currentIndex / itemsPerSlide) * 100}%)` }}
             >
               {Array.from({ length: maxSlides }).map((_, slideIndex) => (

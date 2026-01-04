@@ -65,18 +65,18 @@ export default function Services({ services }: ServicesProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
           {subjects.map((subject, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 flex"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {/* Pulsing neon border - Réduit sur mobile */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${subject.borderGradient} rounded-2xl sm:rounded-3xl opacity-50 group-hover:opacity-100 blur-sm animate-[pulse_2s_ease-in-out_infinite]`}></div>
+              <div className={`absolute -inset-1 bg-gradient-to-r ${subject.borderGradient} rounded-2xl sm:rounded-3xl opacity-50 group-hover:opacity-100 animate-[pulse_2s_ease-in-out_infinite]`}></div>
 
               {/* Intense glow on hover - Désactivé sur mobile pour performance */}
-              <div className={`hidden sm:block absolute -inset-4 bg-gradient-to-r ${subject.borderGradient} rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-500`}></div>
+              <div className={`hidden sm:block absolute -inset-2 bg-gradient-to-r ${subject.borderGradient} rounded-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`}></div>
 
               {/* Shine effect that traverses the card - Désactivé sur mobile */}
               <div className="hidden sm:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
@@ -84,7 +84,7 @@ export default function Services({ services }: ServicesProps) {
               </div>
 
               {/* Glassmorphism card */}
-              <div className="relative backdrop-blur-xl bg-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 xl:p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500">
+              <div className="relative backdrop-blur-xl bg-white/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 xl:p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500 flex-1 flex flex-col">
                 {/* Animated floating particles - Désactivé sur mobile */}
                 <div className="hidden sm:block absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
                   {[...Array(3)].map((_, i) => (
@@ -104,40 +104,39 @@ export default function Services({ services }: ServicesProps) {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Header with LARGE prominent level badge */}
-                  <div className="flex items-start justify-between mb-4 sm:mb-6">
-                    <div className="relative">
+                  <div className="flex items-start justify-between mb-4 sm:mb-6 gap-3">
+                    <div className="relative flex-1">
                       {/* Colored background effect - Réduit sur mobile */}
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} opacity-20 blur-lg sm:blur-xl rounded-lg`}></div>
+                      <div className={`absolute -inset-2 bg-gradient-to-r ${subject.gradient} opacity-20 rounded-lg`}></div>
                       <h3 className="relative text-xl sm:text-2xl lg:text-3xl font-extrabold text-white drop-shadow-lg">
                         {subject.title}
                       </h3>
                     </div>
-                    <div className="relative group/badge">
-                      {/* Badge glow - Réduit sur mobile */}
-                      <div className={`hidden sm:block absolute -inset-2 bg-gradient-to-r ${subject.gradient} rounded-2xl opacity-50 blur-lg group-hover:opacity-80 transition-opacity duration-300`}></div>
-                      <div className={`relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${subject.gradient} shadow-2xl transform group-hover:scale-104 group-hover:rotate-6 transition-all duration-300`}>
-                        <span className="text-lg sm:text-xl lg:text-2xl font-black text-white drop-shadow-md">{subject.levelBadge}</span>
+                    <div className="relative group/badge flex-shrink-0 -mt-2 -mr-2">
+                      {/* Badge glow - Désactivé pour performance */}
+                      <div className={`relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl bg-gradient-to-br ${subject.gradient} shadow-xl transform group-hover:scale-110 transition-all duration-300`}>
+                        <span className="text-base sm:text-lg lg:text-xl font-black text-white drop-shadow-md">{subject.levelBadge}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Level description */}
-                  <p className="text-sm sm:text-base text-gray-300 font-semibold mb-4 sm:mb-6">
+                  <p className="text-sm sm:text-base text-gray-300 font-semibold mb-3 sm:mb-4">
                     {subject.levels}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
+                  <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-6">
                     {subject.topics.map((topic, i) => (
                       <span
                         key={i}
-                        className="px-2 sm:px-3 py-1.5 sm:py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-xs sm:text-sm font-medium text-white hover:bg-white/20 sm:hover:scale-110 sm:hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                        className="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] sm:text-xs font-medium text-white hover:bg-white/20 sm:hover:scale-105 transition-all duration-200"
                       >
                         {topic}
                       </span>
                     ))}
 
                     {/* Ellipsis indicator */}
-                    <span className="px-2 py-1.5 sm:py-2 text-xs sm:text-sm italic text-white/50 select-none">
+                    <span className="px-2 py-1 sm:py-1.5 text-[10px] sm:text-xs italic text-white/50 select-none">
                       … et bien plus
                     </span>
                   </div>
