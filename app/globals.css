@@ -65,8 +65,29 @@ body {
   animation: bgFlowRight 25s ease-in-out infinite reverse;
 }
 
-/* Optimisations mobile - réduire les effets coûteux ET taille des gradients */
-@media (max-width: 768px) {
+/* Optimisations TABLETTE (640px-1024px) - Valeurs intermédiaires */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .animated-bg::before {
+    background:
+      radial-gradient(ellipse 400px 600px at 0% 20%, rgba(99, 102, 241, 0.28), transparent 47%),
+      radial-gradient(ellipse 500px 500px at 100% 80%, rgba(236, 72, 153, 0.23), transparent 47%),
+      radial-gradient(ellipse 350px 450px at 0% 90%, rgba(139, 92, 246, 0.19), transparent 42%);
+    filter: blur(45px);
+    opacity: 0.85;
+  }
+
+  .animated-bg::after {
+    background:
+      radial-gradient(ellipse 550px 450px at 100% 10%, rgba(6, 182, 212, 0.23), transparent 47%),
+      radial-gradient(ellipse 450px 500px at 0% 50%, rgba(236, 72, 153, 0.19), transparent 42%),
+      radial-gradient(ellipse 500px 500px at 100% 90%, rgba(99, 102, 241, 0.21), transparent 45%);
+    filter: blur(55px);
+    opacity: 0.85;
+  }
+}
+
+/* Optimisations MOBILE strict (<640px) - Effets réduits */
+@media (max-width: 640px) {
   .animated-bg::before {
     background:
       radial-gradient(ellipse 200px 300px at 0% 20%, rgba(99, 102, 241, 0.25), transparent 50%),
@@ -137,8 +158,21 @@ body {
   animation: meshMove 18s ease-in-out infinite;
 }
 
-/* Optimisations mobile pour mesh-gradient */
-@media (max-width: 768px) {
+/* Optimisations TABLETTE pour mesh-gradient (640px-1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .mesh-gradient {
+    background:
+      radial-gradient(circle 600px at 50% 10%, rgba(99, 102, 241, 0.13), transparent 60%),
+      radial-gradient(circle 280px at 5% 30%, rgba(6, 182, 212, 0.3), transparent),
+      radial-gradient(circle 320px at 95% 60%, rgba(236, 72, 153, 0.26), transparent),
+      radial-gradient(circle 250px at 10% 85%, rgba(139, 92, 246, 0.24), transparent),
+      radial-gradient(circle 270px at 92% 15%, rgba(99, 102, 241, 0.28), transparent);
+    filter: blur(40px);
+  }
+}
+
+/* Optimisations MOBILE pour mesh-gradient (<640px) */
+@media (max-width: 640px) {
   .mesh-gradient {
     background:
       radial-gradient(circle 300px at 50% 10%, rgba(99, 102, 241, 0.12), transparent 60%),
@@ -205,8 +239,27 @@ body {
   animation: floatRight 18s ease-in-out infinite reverse;
 }
 
-/* Optimisations mobile */
-@media (max-width: 768px) {
+/* Optimisations TABLETTE pour floating-orbs (640px-1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .floating-orbs::before,
+  .floating-orbs::after {
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+
+  .floating-orbs::before {
+    width: 380px;
+    height: 380px;
+  }
+
+  .floating-orbs::after {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* Optimisations MOBILE pour floating-orbs (<640px) */
+@media (max-width: 640px) {
   .floating-orbs::before,
   .floating-orbs::after {
     filter: blur(40px);
@@ -537,8 +590,27 @@ img {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-/* Optimisations mobiles globales */
-@media (max-width: 768px) {
+/* Optimisations TABLETTE globales (640px-1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
+  /* Réduire légèrement les blur coûteux sur tablette */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px) !important;
+  }
+
+  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc sur TABLETTE */
+  /* Évite l'effet "rectangle blanc" du gradient transparent */
+  section > div > h2.bg-gradient-to-r,
+  section > div > h2[class*="bg-gradient"],
+  section > div > h2.text-transparent {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+  }
+}
+
+/* Optimisations MOBILE globales (<640px) */
+@media (max-width: 640px) {
   /* Réduire les blur coûteux sur mobile */
   .backdrop-blur-xl {
     backdrop-filter: blur(8px) !important;
@@ -560,7 +632,7 @@ img {
     text-size-adjust: 100%;
   }
 
-  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc au lieu de gradient transparent sur mobile */
+  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc sur MOBILE */
   /* NE PAS affecter les spans .gradient-text dans le titre principal Hero */
   section > div > h2.bg-gradient-to-r,
   section > div > h2[class*="bg-gradient"],
