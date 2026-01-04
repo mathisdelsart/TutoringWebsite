@@ -432,19 +432,20 @@ Merci pour votre attention !`
             <div className="pt-4 border-t border-primary/20">
               <p className="text-sm text-gray-400 mb-4">Choisis ton moyen de contact :</p>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
                 <button
                   type="button"
                   onClick={() => handleSubmit('whatsapp')}
                   disabled={!formData.availability}
-                  className="p-4 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
-                  <MessageCircle className="w-6 h-6" />
-                  <span className="text-xs font-medium">WhatsApp</span>
-                  <span className="text-[10px] text-white/70 mt-1">Réponse rapide</span>
+                  <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">Réponse rapide</span>
                 </button>
 
-                <button
+                {/* TEMPORAIREMENT DÉSACTIVÉ - À réactiver quand Messenger sera fixé */}
+                {/* <button
                   type="button"
                   onClick={() => handleSubmit('messenger')}
                   disabled={!formData.availability}
@@ -453,17 +454,17 @@ Merci pour votre attention !`
                   <MessagesSquare className="w-6 h-6" />
                   <span className="text-xs font-medium">Messenger</span>
                   <span className="text-[10px] text-white/70 mt-1">Réponse très rapide</span>
-                </button>
+                </button> */}
 
                 <button
                   type="button"
                   onClick={() => handleSubmit('email')}
                   disabled={!formData.availability}
-                  className="p-4 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
-                  <Mail className="w-6 h-6" />
-                  <span className="text-xs font-medium">Email</span>
-                  <span className="text-[10px] text-white/70 mt-1">Réponse sous 24h</span>
+                  <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm font-medium">Email</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">Réponse sous 24h</span>
                 </button>
               </div>
 

@@ -32,16 +32,17 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
       borderColor: 'border-green-500/30',
       description: 'Réponse rapide'
     },
-    {
-      icon: <MessagesSquare />,
-      title: 'Messenger',
-      value: 'Contacte-moi directement',
-      link: messengerLink,
-      color: 'from-purple-500 to-pink-600',
-      bgColor: 'bg-purple-500/10',
-      borderColor: 'border-purple-500/30',
-      description: 'Réponse très rapide'
-    },
+    // TEMPORAIREMENT DÉSACTIVÉ - À réactiver quand Messenger sera fixé
+    // {
+    //   icon: <MessagesSquare />,
+    //   title: 'Messenger',
+    //   value: 'Contacte-moi directement',
+    //   link: messengerLink,
+    //   color: 'from-purple-500 to-pink-600',
+    //   bgColor: 'bg-purple-500/10',
+    //   borderColor: 'border-purple-500/30',
+    //   description: 'Réponse très rapide'
+    // },
     {
       icon: <Mail />,
       title: 'Email',
@@ -99,7 +100,7 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
           <ContactForm email={email} whatsapp={whatsapp} messenger={messenger} nom={nom} />
         ) : (
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
