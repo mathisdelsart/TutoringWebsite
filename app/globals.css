@@ -20,7 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Animated Background */
+/* Animated Background - Fond dégradé vivant et visible */
 .animated-bg {
   position: fixed;
   top: 0;
@@ -28,63 +28,111 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background: linear-gradient(135deg, #0F0F1E 0%, #1a1a2e 50%, #16213e 100%);
+  background: linear-gradient(135deg, #0a0a1a 0%, #16182e 50%, #1a1a2e 100%);
   pointer-events: none;
+  overflow: hidden;
 }
 
+/* Layer animé avec blobs dégradés bien visibles */
 .animated-bg::before {
   content: '';
   position: absolute;
-  width: 200%;
-  height: 200%;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: 1;
   background:
-    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 90% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-  animation: bgShift 20s ease-in-out infinite;
+    radial-gradient(ellipse 600px 800px at 0% 20%, rgba(99, 102, 241, 0.3), transparent 45%),
+    radial-gradient(ellipse 700px 700px at 100% 80%, rgba(236, 72, 153, 0.25), transparent 45%),
+    radial-gradient(ellipse 500px 600px at 0% 90%, rgba(139, 92, 246, 0.2), transparent 40%);
+  filter: blur(60px);
+  animation: bgFlowLeft 20s ease-in-out infinite;
 }
 
-@keyframes bgShift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(-50px, 50px) rotate(5deg); }
-  66% { transform: translate(50px, -50px) rotate(-5deg); }
+/* Deuxième layer pour effet de profondeur */
+.animated-bg::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 800px 600px at 100% 10%, rgba(6, 182, 212, 0.25), transparent 45%),
+    radial-gradient(ellipse 600px 700px at 0% 50%, rgba(236, 72, 153, 0.2), transparent 40%),
+    radial-gradient(ellipse 700px 700px at 100% 90%, rgba(99, 102, 241, 0.22), transparent 42%);
+  filter: blur(70px);
+  animation: bgFlowRight 25s ease-in-out infinite reverse;
 }
 
-/* Mesh Gradient - Fond moderne et subtil avec animation douce */
+@keyframes bgFlowLeft {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  33% {
+    transform: translate(-8%, 5%) scale(1.1);
+  }
+  66% {
+    transform: translate(6%, -4%) scale(0.95);
+  }
+}
+
+@keyframes bgFlowRight {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(7%, -6%) scale(1.08) rotate(2deg);
+  }
+  66% {
+    transform: translate(-5%, 7%) scale(0.98) rotate(-2deg);
+  }
+}
+
+/* Support prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animated-bg::before,
+  .animated-bg::after {
+    animation: none;
+  }
+}
+
+/* Mesh Gradient - Accents visibles sur les côtés */
 .mesh-gradient {
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
-    radial-gradient(circle at 50% 70%, rgba(236, 72, 153, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 25% 85%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
-  animation: meshMove 25s ease-in-out infinite;
-  filter: blur(60px);
+    radial-gradient(circle 400px at 5% 30%, rgba(6, 182, 212, 0.35), transparent),
+    radial-gradient(circle 450px at 95% 60%, rgba(236, 72, 153, 0.3), transparent),
+    radial-gradient(circle 350px at 10% 85%, rgba(139, 92, 246, 0.28), transparent),
+    radial-gradient(circle 380px at 92% 15%, rgba(99, 102, 241, 0.32), transparent);
+  filter: blur(50px);
+  animation: meshMove 18s ease-in-out infinite;
 }
 
 @keyframes meshMove {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(-3%, 2%) scale(1.05);
+    transform: translate(0, 0);
   }
   50% {
-    transform: translate(2%, -3%) scale(0.98);
-  }
-  75% {
-    transform: translate(-2%, 3%) scale(1.02);
+    transform: translate(3%, -3%);
   }
 }
 
-/* Orbes flottantes - Très subtiles et légères */
+@media (prefers-reduced-motion: reduce) {
+  .mesh-gradient {
+    animation: none;
+  }
+}
+
+/* Orbes flottantes - Accents lumineux visibles */
 .floating-orbs {
   position: fixed;
   top: 0;
@@ -101,53 +149,55 @@ body {
   content: '';
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.15;
+  filter: blur(80px);
 }
 
+/* Orbe gauche - bleu indigo visible */
 .floating-orbs::before {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
-  top: 20%;
-  left: 10%;
-  animation: floatOrb1 20s ease-in-out infinite;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 65%);
+  top: 25%;
+  left: -10%;
+  animation: floatLeft 15s ease-in-out infinite;
 }
 
+/* Orbe droite - rose/magenta visible */
 .floating-orbs::after {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.25), transparent);
-  bottom: 20%;
-  right: 15%;
-  animation: floatOrb2 18s ease-in-out infinite;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35), transparent 65%);
+  bottom: 15%;
+  right: -12%;
+  animation: floatRight 18s ease-in-out infinite reverse;
 }
 
-@keyframes floatOrb1 {
+@keyframes floatLeft {
   0%, 100% {
     transform: translate(0, 0) scale(1);
   }
-  33% {
-    transform: translate(40px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-30px, 40px) scale(0.9);
+  50% {
+    transform: translate(15%, -8%) scale(1.2);
   }
 }
 
-@keyframes floatOrb2 {
+@keyframes floatRight {
   0%, 100% {
     transform: translate(0, 0) scale(1);
   }
-  33% {
-    transform: translate(-50px, 30px) scale(0.95);
-  }
-  66% {
-    transform: translate(40px, -40px) scale(1.08);
+  50% {
+    transform: translate(-12%, 10%) scale(1.15);
   }
 }
 
-/* Grid effect - Très subtil et élégant */
+@media (prefers-reduced-motion: reduce) {
+  .floating-orbs::before,
+  .floating-orbs::after {
+    animation: none;
+  }
+}
+
+/* Grid effect - Texture subtile pour la profondeur */
 .grid-overlay {
   position: fixed;
   top: 0;
@@ -155,18 +205,25 @@ body {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.015) 1px, transparent 1px);
-  background-size: 80px 80px;
+    linear-gradient(rgba(99, 102, 241, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.01) 1px, transparent 1px);
+  background-size: 100px 100px;
   z-index: 3;
-  opacity: 0.6;
-  animation: gridPulse 8s ease-in-out infinite;
+  opacity: 0.5;
+  animation: gridFade 40s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes gridPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+@keyframes gridFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-overlay {
+    animation: none;
+    opacity: 0.4;
+  }
 }
 
 /* Gradient text animation - Enhanced */
