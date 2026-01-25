@@ -70,7 +70,7 @@ The site features an intelligent contact form that pre-fills messages across dif
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mathis003/TutoringWebsite.git
+git clone https://github.com/mathisdelsart/TutoringWebsite.git
 cd TutoringWebsite
 
 # Install dependencies
