@@ -7,19 +7,16 @@ import ContactForm from './ContactForm'
 interface ContactProps {
   email: string
   whatsapp: string
-  messenger?: string
   nom: string
   zone: string
   modalites: string[]
   disponibilites: string
 }
 
-export default function Contact({ email, whatsapp, messenger, nom, zone, modalites, disponibilites }: ContactProps) {
+export default function Contact({ email, whatsapp, nom, zone, modalites, disponibilites }: ContactProps) {
   const [showForm, setShowForm] = useState(false)
   const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
   const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
-  // Format universel pour Messenger (fonctionne sur mobile et desktop)
-  const messengerLink = messenger ? `https://www.facebook.com/messages/t/${messenger}` : '#'
 
   const contactMethods = [
     {
@@ -32,17 +29,6 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
       borderColor: 'border-green-500/30',
       description: 'Réponse rapide'
     },
-    // TEMPORAIREMENT DÉSACTIVÉ - À réactiver quand Messenger sera fixé
-    // {
-    //   icon: <MessagesSquare />,
-    //   title: 'Messenger',
-    //   value: 'Contacte-moi directement',
-    //   link: messengerLink,
-    //   color: 'from-purple-500 to-pink-600',
-    //   bgColor: 'bg-purple-500/10',
-    //   borderColor: 'border-purple-500/30',
-    //   description: 'Réponse très rapide'
-    // },
     {
       icon: <Mail />,
       title: 'Email',
@@ -97,7 +83,7 @@ export default function Contact({ email, whatsapp, messenger, nom, zone, modalit
         </div>
 
         {showForm ? (
-          <ContactForm email={email} whatsapp={whatsapp} messenger={messenger} nom={nom} />
+          <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
         ) : (
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">

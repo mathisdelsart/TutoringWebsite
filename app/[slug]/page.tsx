@@ -23,7 +23,6 @@ interface ProfData {
   disponibilites: string
   email: string
   whatsapp: string
-  messenger?: string
   temoignage?: {
     texte: string
     auteur: string
@@ -37,8 +36,9 @@ function getProfData(): ProfData {
 }
 
 export async function generateStaticParams() {
+  const prof = getProfData()
   return [
-    { slug: 'mathis-delsart' }
+    { slug: prof.slug }
   ]
 }
 
@@ -91,7 +91,6 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
         <Contact
           email={prof.email}
           whatsapp={prof.whatsapp}
-          messenger={prof.messenger}
           nom={prof.nom}
           zone={prof.zone}
           modalites={prof.modalites}

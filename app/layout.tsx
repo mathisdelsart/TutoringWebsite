@@ -1,22 +1,21 @@
 import './globals.css'
 import { Outfit } from 'next/font/google'
+import profData from '@/data/prof.json'
 
 const outfit = Outfit({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Mathis Delsart | Professeur particulier en maths, physique & Python',
-  description:
-    'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).',
+  title: profData.siteTitle,
+  description: profData.description,
   openGraph: {
-    title: 'Mathis Delsart | Professeur particulier en maths, physique & Python',
-    description:
-      'Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).',
+    title: profData.siteTitle,
+    description: profData.description,
     images: [
       {
-        url: 'https://mathis003.github.io/cours-particuliers/app-image.png?v=4',
+        url: profData.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Mathis Delsart – Professeur particulier',
+        alt: profData.ogImageAlt,
       },
     ],
     locale: 'fr_BE',

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import testimonialsData from '@/data/testimonials.json'
 
 interface TemoignageProps {
   temoignage?: {
@@ -31,68 +32,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
     return () => window.removeEventListener('resize', updateItemsPerSlide)
   }, [])
 
-  const testimonials = [
-    {
-      text: "Ma fille a adoré ses sessions sur la trigonométrie avec Mathis ; il maîtrise clairement le sujet et sait se mettre à la place de l'élève. Ses explications sont claires et il n'hésite pas à se répéter si nécessaire. Nous referons appel à lui sans hésitation.",
-      author: "Charlier",
-      role: "Parent d'élève – Maths",
-      avatar: "C"
-    },
-    {
-      text: "Très satisfaite. Ponctuel, aimable. Mon fils a apprécié sa manière d’expliquer. À recommander.",
-      author: "Stéphanie",
-      role: "Parent d’élève – Physique",
-      avatar: "S"
-    },
-    {
-      text: "Mathis est un professeur excellent. Très sérieux et extrêmement ordonné. Il prépare ses cours à l’avance et donne des exercices pour le cours suivant. Je le recommande fortement !",
-      author: "Soraya",
-      role: "Parent d’élève – Physique",
-      avatar: "S"
-    },
-    {
-      text: "Notre fils Guido a eu un examen de passage en maths après une année très compliquée. En deux semaines (2h/jour), Mathis a revu et expliqué clairement une année complète. Guido a réussi son examen. Un immense merci pour son travail et sa patience !",
-      author: "Sonik",
-      role: "Parent d’élève – Mathématiques",
-      avatar: "S"
-    },
-    {
-      text: "Mon fils a suivi des cours de maths et de physique avec Mathis pour réussir sa seconde session (5ème option Math/Sciences). Il est disponible, poli et ponctuel. Il prépare ses cours à l’avance et est très organisé. Mon fils a réussi ses examens et est prêt à entamer sa rhéto. Je recommande Mathis comme professeur particulier.",
-      author: "Laurence",
-      role: "Parent d’élève – Maths & Physique",
-      avatar: "L"
-    },
-    {
-      text: "Très bon professeur, étude efficace dans une ambiance agréable. Ma fille, qui avait de grosses difficultés, a retrouvé confiance et réussi son examen. Je recommande vivement !",
-      author: "Lolly",
-      role: "Parent d’élève – Maths",
-      avatar: "L"
-    },
-    {
-      text: "Il m’a aidé pour mes examens et m’a permis de me remettre à niveau. Il explique clairement et s’adapte selon les besoins. Je vous le conseille sans hésiter.",
-      author: "Jacqmin",
-      role: "Ancien élève – Maths",
-      avatar: "J"
-    },
-    {
-      text: "Ayant reçu de l’aide de Mathis dans certains cours, je peux témoigner de sa capacité à expliquer clairement et à rendre accessibles des notions complexes, en particulier en mathématiques.",
-      author: "Coralie",
-      role: "Recommandation",
-      avatar: "C"
-    },
-    {
-      text: "Mathis a toujours su rendre les mathématiques et les sciences accessibles. Patient et pédagogue, il aide à comprendre et à faire des liens entre les concepts. Je le recommande vivement.",
-      author: "Laurine",
-      role: "Recommandation",
-      avatar: "L"
-    },
-    {
-      text: "Je recommande vivement Mathis pour des cours de mathématiques et de physique au secondaire. Grâce à ses explications claires et à son approche patiente, il aide réellement les élèves à progresser et à gagner en confiance.",
-      author: "Thomas",
-      role: "Recommandation",
-      avatar: "T"
-    }
-  ]
+  const testimonials = testimonialsData
 
   const maxSlides = Math.ceil(testimonials.length / itemsPerSlide)
 

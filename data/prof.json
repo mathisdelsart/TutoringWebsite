@@ -1,10 +1,17 @@
 {
+  "slug": "mathis-delsart",
   "nom": "Mathis Delsart",
-  "matieres": ["Mathématiques", "Physique"],
+  "matieres": ["Mathématiques", "Physique", "Python"],
+  "niveaux": ["Secondaire (1re à 6e)"],
   "ville": "Gouy-Lez-Piéton",
   "zone": "Belgique, Courcelles, Gouy-Lez-Piéton",
+  "accroche": "Ingénieur civil en Informatique & IA spécialisé dans l'enseignement personnalisé",
   "modalites": ["Cours à domicile", "Cours en ligne"],
+  "disponibilites": "Très flexible (semaine & week-end)",
   "email": "mathis.delsart@gmail.com",
   "whatsapp": "32468386354",
-  "messenger": "mathis.delsart.50"
+  "siteTitle": "Mathis Delsart | Professeur particulier en maths, physique & Python",
+  "description": "Secondaire • À domicile ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).",
+  "ogImage": "https://mathis003.github.io/TutoringWebsite/app-image.png?v=4",
+  "ogImageAlt": "Mathis Delsart – Professeur particulier"
 }
