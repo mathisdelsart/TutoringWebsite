@@ -160,8 +160,6 @@ The site will be available at: `https://[username].github.io/TutoringWebsite/mat
 
 <div align="center">
 
-**Built for LINFO2335 - Programming Paradigms @ UCLouvain** (Université catholique de Louvain).
-
 *Built for Private Tutoring Services*
 
 </div>
