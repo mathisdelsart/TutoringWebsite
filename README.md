@@ -1,5 +1,3 @@
-![Tutoring Website](public/app-image.png)
-
 <div align="center">
 
 # Tutoring Website
@@ -14,6 +12,10 @@
 *A responsive, SEO-optimized tutoring website built with Next.js and Tailwind CSS. Features animated UI, multi-channel contact forms, and static export for free GitHub Pages hosting.*
 
 </div>
+
+---
+
+![Tutoring Website](public/app-image.png)
 
 ---
 
@@ -137,8 +139,29 @@ The site will be available at: `https://[username].github.io/TutoringWebsite/mat
 
 ---
 
+## Author
+
 <div align="center">
 
-**Built for Private Tutoring Services**
+<table>
+  <tr>
+    <td width="180" align="left">
+      <img src="https://img.shields.io/badge/GitHub-mathisdelsart-black?logo=github" valign="middle"/>
+    </td>
+    <td align="left">
+      <strong>Mathis DELSART</strong>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+---
+
+<div align="center">
+
+**Built for LINFO2335 - Programming Paradigms @ UCLouvain** (Université catholique de Louvain).
+
+*Built for Private Tutoring Services*
 
 </div>
