@@ -3,7 +3,7 @@
  *
  * Utilisation :
  * - En local : assetPath('/image.jpg') → '/image.jpg'
- * - Sur GitHub Pages : assetPath('/image.jpg') → '/cours-particuliers/image.jpg'
+ * - Sur GitHub Pages : assetPath('/image.jpg') → '/TutoringWebsite/image.jpg'
  *
  * Le basePath est automatiquement injecté par actions/configure-pages lors du build
  */
