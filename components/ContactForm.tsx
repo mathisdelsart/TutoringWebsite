@@ -134,22 +134,22 @@ ${m.closing}`
   }
 
   const subjectVisuals = [
-    { icon: Calculator, color: 'from-indigo-500 to-purple-600' },
-    { icon: Lightbulb, color: 'from-cyan-500 to-blue-600' },
-    { icon: Code, color: 'from-emerald-500 to-teal-600' }
+    { icon: Calculator, color: 'from-emerald-500 to-teal-600' },
+    { icon: Lightbulb, color: 'from-teal-500 to-emerald-600' },
+    { icon: Code, color: 'from-green-500 to-emerald-600' }
   ]
   const subjects = t.form.subjects.map((name, i) => ({ name, ...subjectVisuals[i] }))
 
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
-      <h3 className="text-2xl font-bold text-white mb-2">{t.form.title}</h3>
-      <p className="text-gray-400 mb-6 text-sm">{t.form.subtitle}</p>
+      <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.form.title}</h3>
+      <p className="text-slate-500 mb-6 text-sm">{t.form.subtitle}</p>
 
       {/* Progress bar */}
       <div className="flex gap-2 mb-8">
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 1 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-gray-700'}`} />
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 2 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-gray-700'}`} />
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 3 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-gray-700'}`} />
+        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 1 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
+        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 2 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
+        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 3 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
       </div>
 
       <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
@@ -157,7 +157,7 @@ ${m.closing}`
         {step === 1 && (
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 {t.form.labelName} <span className="text-accent">*</span>
               </label>
               <input
@@ -165,13 +165,13 @@ ${m.closing}`
                 required
                 value={formData.name}
                 onChange={(e) => updateFormData('name', e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all"
                 placeholder={t.form.placeholderName}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelSubjects} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-3 gap-3">
@@ -186,7 +186,7 @@ ${m.closing}`
                       className={`p-4 rounded-xl border-2 transition-all duration-300 ${
                         isSelected
                           ? `border-primary bg-gradient-to-br ${subject.color} text-white shadow-lg`
-                          : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                       }`}
                     >
                       <Icon className={`w-6 h-6 mx-auto mb-2 ${isSelected ? 'text-white' : 'text-primary'}`} />
@@ -195,11 +195,11 @@ ${m.closing}`
                   )
                 })}
               </div>
-              <p className="text-xs text-gray-500 mt-2">{t.form.subjectsHint}</p>
+              <p className="text-xs text-slate-400 mt-2">{t.form.subjectsHint}</p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelModalite} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -208,11 +208,11 @@ ${m.closing}`
                   onClick={() => updateFormData('location', 'domicile')}
                   className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
                     formData.location === 'domicile'
-                      ? 'border-primary bg-primary/10 text-white'
-                      : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                      ? 'border-primary bg-emerald-50 text-slate-900'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                   }`}
                 >
-                  <Home className={`w-6 h-6 ${formData.location === 'domicile' ? 'text-primary' : 'text-gray-400'}`} />
+                  <Home className={`w-6 h-6 ${formData.location === 'domicile' ? 'text-primary' : 'text-slate-400'}`} />
                   <div className="text-sm font-medium">{t.form.optHome}</div>
                 </button>
                 <button
@@ -220,11 +220,11 @@ ${m.closing}`
                   onClick={() => updateFormData('location', 'visio')}
                   className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
                     formData.location === 'visio'
-                      ? 'border-accent bg-accent/10 text-white'
-                      : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                      ? 'border-primary bg-emerald-50 text-slate-900'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                   }`}
                 >
-                  <Video className={`w-6 h-6 ${formData.location === 'visio' ? 'text-accent' : 'text-gray-400'}`} />
+                  <Video className={`w-6 h-6 ${formData.location === 'visio' ? 'text-primary' : 'text-slate-400'}`} />
                   <div className="text-sm font-medium">{t.form.optOnline}</div>
                 </button>
               </div>
@@ -245,7 +245,7 @@ ${m.closing}`
         {step === 2 && (
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelCourseType} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -254,30 +254,30 @@ ${m.closing}`
                   onClick={() => updateFormData('courseType', 'suivi')}
                   className={`p-5 rounded-xl border-2 transition-all duration-300 ${
                     formData.courseType === 'suivi'
-                      ? 'border-primary bg-primary/10 text-white'
-                      : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                      ? 'border-primary bg-emerald-50 text-slate-900'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                   }`}
                 >
                   <div className="text-lg font-semibold mb-1">{t.form.courseRegularTitle}</div>
-                  <div className="text-xs text-gray-400">{t.form.courseRegularDesc}</div>
+                  <div className="text-xs text-slate-500">{t.form.courseRegularDesc}</div>
                 </button>
                 <button
                   type="button"
                   onClick={() => updateFormData('courseType', 'ponctuel')}
                   className={`p-5 rounded-xl border-2 transition-all duration-300 ${
                     formData.courseType === 'ponctuel'
-                      ? 'border-accent bg-accent/10 text-white'
-                      : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                      ? 'border-primary bg-emerald-50 text-slate-900'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                   }`}
                 >
                   <div className="text-lg font-semibold mb-1">{t.form.courseOneoffTitle}</div>
-                  <div className="text-xs text-gray-400">{t.form.courseOneoffDesc}</div>
+                  <div className="text-xs text-slate-500">{t.form.courseOneoffDesc}</div>
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelReason}
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -288,8 +288,8 @@ ${m.closing}`
                     onClick={() => updateFormData('reason', formData.reason === r ? '' : r)}
                     className={`p-3 rounded-xl border-2 transition-all duration-300 text-sm ${
                       formData.reason === r
-                        ? 'border-primary bg-primary/10 text-white'
-                        : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
+                        ? 'border-primary bg-emerald-50 text-slate-900'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
                     }`}
                   >
                     {r}
@@ -300,10 +300,10 @@ ${m.closing}`
 
             {formData.courseType === 'suivi' && (
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-3">
+                <label className="block text-sm font-medium text-slate-700 mb-3">
                   {t.form.labelFrequency}
                 </label>
-                <div className="card p-3 sm:p-4 bg-white/5 border-primary/20">
+                <div className="card p-3 sm:p-4 bg-slate-50 border-slate-200">
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                     <input
                       type="number"
@@ -311,19 +311,19 @@ ${m.closing}`
                       max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
-                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-background/50 border border-primary/40 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-white text-center font-semibold transition-all text-base sm:text-lg"
+                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg"
                       placeholder="2"
                     />
-                    <span className="hidden sm:inline text-gray-300 font-medium">×</span>
-                    <span className="hidden sm:inline text-gray-400 text-sm">{t.form.freqPer}</span>
+                    <span className="hidden sm:inline text-slate-500 font-medium">×</span>
+                    <span className="hidden sm:inline text-slate-500 text-sm">{t.form.freqPer}</span>
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => updateFormData('frequencyPeriod', 'semaine')}
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'semaine'
-                            ? 'border-primary bg-primary/20 text-white'
-                            : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
+                            ? 'border-primary bg-emerald-50 text-slate-900'
+                            : 'border-slate-200 bg-white text-slate-500 hover:border-primary/50'
                         }`}
                       >
                         {t.form.freqWeek}
@@ -333,15 +333,15 @@ ${m.closing}`
                         onClick={() => updateFormData('frequencyPeriod', 'mois')}
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'mois'
-                            ? 'border-primary bg-primary/20 text-white'
-                            : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
+                            ? 'border-primary bg-emerald-50 text-slate-900'
+                            : 'border-slate-200 bg-white text-slate-500 hover:border-primary/50'
                         }`}
                       >
                         {t.form.freqMonth}
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-2 sm:mt-3 text-center">{t.form.freqHint}</p>
+                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">{t.form.freqHint}</p>
                 </div>
               </div>
             )}
@@ -369,7 +369,7 @@ ${m.closing}`
         {step === 3 && (
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 {t.form.labelAvailability} <span className="text-accent">*</span>
               </label>
               <input
@@ -377,26 +377,26 @@ ${m.closing}`
                 required
                 value={formData.availability}
                 onChange={(e) => updateFormData('availability', e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all"
                 placeholder={t.form.placeholderAvailability}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 {t.form.labelMessage}
               </label>
               <textarea
                 value={formData.message}
                 onChange={(e) => updateFormData('message', e.target.value)}
                 rows={3}
-                className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all resize-none"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all resize-none"
                 placeholder={t.form.placeholderMessage}
               />
             </div>
 
-            <div className="pt-4 border-t border-primary/20">
-              <p className="text-sm text-gray-400 mb-4">{t.form.chooseContact}</p>
+            <div className="pt-4 border-t border-slate-200">
+              <p className="text-sm text-slate-500 mb-4">{t.form.chooseContact}</p>
 
               <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
                 <button
@@ -414,7 +414,7 @@ ${m.closing}`
                   type="button"
                   onClick={() => handleSubmit('email')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">Email</span>

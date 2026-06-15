@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -12,342 +12,43 @@
 
 body {
   font-family: 'Outfit', sans-serif;
-  background: #0F0F1E;
-  color: #ffffff;
+  background: #FAFAF9;
+  color: #0F172A;
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Animated Background - Fond dégradé vivant avec halo central */
-.animated-bg {
+/* Sober flat background — soft off-white with the faintest green wash, no animated blobs */
+.app-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: -10;
-  background: linear-gradient(135deg, #0a0a1a 0%, #16182e 50%, #1a1a2e 100%);
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Layer animé avec blobs dégradés visibles sur les côtés */
-.animated-bg::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  width: 140%;
-  height: 140%;
-  background:
-    radial-gradient(ellipse 600px 800px at 0% 20%, rgba(99, 102, 241, 0.3), transparent 45%),
-    radial-gradient(ellipse 700px 700px at 100% 80%, rgba(236, 72, 153, 0.25), transparent 45%),
-    radial-gradient(ellipse 500px 600px at 0% 90%, rgba(139, 92, 246, 0.2), transparent 40%);
-  filter: blur(60px);
-  animation: bgFlowLeft 20s ease-in-out infinite;
-}
-
-/* Deuxième layer pour effet de profondeur */
-.animated-bg::after {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  width: 140%;
-  height: 140%;
-  background:
-    radial-gradient(ellipse 800px 600px at 100% 10%, rgba(6, 182, 212, 0.25), transparent 45%),
-    radial-gradient(ellipse 600px 700px at 0% 50%, rgba(236, 72, 153, 0.2), transparent 40%),
-    radial-gradient(ellipse 700px 700px at 100% 90%, rgba(99, 102, 241, 0.22), transparent 42%);
-  filter: blur(70px);
-  animation: bgFlowRight 25s ease-in-out infinite reverse;
-}
-
-/* Optimisations TABLETTE (640px-1024px) - Valeurs intermédiaires */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .animated-bg::before {
-    background:
-      radial-gradient(ellipse 400px 600px at 0% 20%, rgba(99, 102, 241, 0.28), transparent 47%),
-      radial-gradient(ellipse 500px 500px at 100% 80%, rgba(236, 72, 153, 0.23), transparent 47%),
-      radial-gradient(ellipse 350px 450px at 0% 90%, rgba(139, 92, 246, 0.19), transparent 42%);
-    filter: blur(45px);
-    opacity: 0.85;
-  }
-
-  .animated-bg::after {
-    background:
-      radial-gradient(ellipse 550px 450px at 100% 10%, rgba(6, 182, 212, 0.23), transparent 47%),
-      radial-gradient(ellipse 450px 500px at 0% 50%, rgba(236, 72, 153, 0.19), transparent 42%),
-      radial-gradient(ellipse 500px 500px at 100% 90%, rgba(99, 102, 241, 0.21), transparent 45%);
-    filter: blur(55px);
-    opacity: 0.85;
-  }
-}
-
-/* Optimisations MOBILE strict (<640px) - Effets réduits */
-@media (max-width: 640px) {
-  .animated-bg::before {
-    background:
-      radial-gradient(ellipse 200px 300px at 0% 20%, rgba(99, 102, 241, 0.25), transparent 50%),
-      radial-gradient(ellipse 250px 250px at 100% 80%, rgba(236, 72, 153, 0.2), transparent 50%),
-      radial-gradient(ellipse 180px 220px at 0% 90%, rgba(139, 92, 246, 0.18), transparent 45%);
-    filter: blur(30px);
-    opacity: 0.6;
-  }
-
-  .animated-bg::after {
-    background:
-      radial-gradient(ellipse 280px 220px at 100% 10%, rgba(6, 182, 212, 0.2), transparent 50%),
-      radial-gradient(ellipse 220px 260px at 0% 50%, rgba(236, 72, 153, 0.18), transparent 45%),
-      radial-gradient(ellipse 250px 250px at 100% 90%, rgba(99, 102, 241, 0.2), transparent 48%);
-    filter: blur(35px);
-    opacity: 0.6;
-  }
-}
-
-@keyframes bgFlowLeft {
-  0%, 100% {
-    transform: translate(0%, 0%) scale(1);
-  }
-  33% {
-    transform: translate(-8%, 5%) scale(1.1);
-  }
-  66% {
-    transform: translate(6%, -4%) scale(0.95);
-  }
-}
-
-@keyframes bgFlowRight {
-  0%, 100% {
-    transform: translate(0%, 0%) scale(1) rotate(0deg);
-  }
-  33% {
-    transform: translate(7%, -6%) scale(1.08) rotate(2deg);
-  }
-  66% {
-    transform: translate(-5%, 7%) scale(0.98) rotate(-2deg);
-  }
-}
-
-/* Support prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .animated-bg::before,
-  .animated-bg::after {
-    animation: none;
-  }
-}
-
-/* Mesh Gradient - Accents visibles + halo central pour le hero */
-.mesh-gradient {
-  position: fixed;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  z-index: -9;
   pointer-events: none;
   background:
-    radial-gradient(circle 900px at 50% 10%, rgba(99, 102, 241, 0.15), transparent 60%),
-    radial-gradient(circle 400px at 5% 30%, rgba(6, 182, 212, 0.35), transparent),
-    radial-gradient(circle 450px at 95% 60%, rgba(236, 72, 153, 0.3), transparent),
-    radial-gradient(circle 350px at 10% 85%, rgba(139, 92, 246, 0.28), transparent),
-    radial-gradient(circle 380px at 92% 15%, rgba(99, 102, 241, 0.32), transparent);
-  filter: blur(50px);
-  animation: meshMove 18s ease-in-out infinite;
+    radial-gradient(ellipse 800px 600px at 100% 0%, rgba(16, 185, 129, 0.06), transparent 60%),
+    radial-gradient(ellipse 700px 600px at 0% 100%, rgba(5, 150, 105, 0.05), transparent 60%),
+    #FAFAF9;
 }
 
-/* Optimisations TABLETTE pour mesh-gradient (640px-1024px) */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .mesh-gradient {
-    background:
-      radial-gradient(circle 600px at 50% 10%, rgba(99, 102, 241, 0.13), transparent 60%),
-      radial-gradient(circle 280px at 5% 30%, rgba(6, 182, 212, 0.3), transparent),
-      radial-gradient(circle 320px at 95% 60%, rgba(236, 72, 153, 0.26), transparent),
-      radial-gradient(circle 250px at 10% 85%, rgba(139, 92, 246, 0.24), transparent),
-      radial-gradient(circle 270px at 92% 15%, rgba(99, 102, 241, 0.28), transparent);
-    filter: blur(40px);
-  }
-}
-
-/* Optimisations MOBILE pour mesh-gradient (<640px) */
-@media (max-width: 640px) {
-  .mesh-gradient {
-    background:
-      radial-gradient(circle 300px at 50% 10%, rgba(99, 102, 241, 0.12), transparent 60%),
-      radial-gradient(circle 150px at 5% 30%, rgba(6, 182, 212, 0.25), transparent),
-      radial-gradient(circle 170px at 95% 60%, rgba(236, 72, 153, 0.22), transparent),
-      radial-gradient(circle 140px at 10% 85%, rgba(139, 92, 246, 0.2), transparent),
-      radial-gradient(circle 160px at 92% 15%, rgba(99, 102, 241, 0.24), transparent);
-    filter: blur(30px);
-  }
-}
-
-@keyframes meshMove {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(3%, -3%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mesh-gradient {
-    animation: none;
-  }
-}
-
-/* Orbes flottantes - Accents lumineux visibles */
-.floating-orbs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -8;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.floating-orbs::before,
-.floating-orbs::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-}
-
-/* Orbe gauche - bleu indigo visible */
-.floating-orbs::before {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 65%);
-  top: 25%;
-  left: -10%;
-  animation: floatLeft 15s ease-in-out infinite;
-}
-
-/* Orbe droite - rose/magenta visible */
-.floating-orbs::after {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.35), transparent 65%);
-  bottom: 15%;
-  right: -12%;
-  animation: floatRight 18s ease-in-out infinite reverse;
-}
-
-/* Optimisations TABLETTE pour floating-orbs (640px-1024px) */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .floating-orbs::before,
-  .floating-orbs::after {
-    filter: blur(60px);
-    opacity: 0.7;
-  }
-
-  .floating-orbs::before {
-    width: 380px;
-    height: 380px;
-  }
-
-  .floating-orbs::after {
-    width: 400px;
-    height: 400px;
-  }
-}
-
-/* Optimisations MOBILE pour floating-orbs (<640px) */
-@media (max-width: 640px) {
-  .floating-orbs::before,
-  .floating-orbs::after {
-    filter: blur(40px);
-    opacity: 0.5;
-  }
-
-  .floating-orbs::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .floating-orbs::after {
-    width: 320px;
-    height: 320px;
-  }
-}
-
-@keyframes floatLeft {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(15%, -8%) scale(1.2);
-  }
-}
-
-@keyframes floatRight {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-12%, 10%) scale(1.15);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-orbs::before,
-  .floating-orbs::after {
-    animation: none;
-  }
-}
-
-/* Grid effect - Texture technique très discrète */
-.grid-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(99, 102, 241, 0.008) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.008) 1px, transparent 1px);
-  background-size: 120px 120px;
-  z-index: -7;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .grid-overlay {
-    opacity: 0.2;
-  }
-}
-
-/* Gradient text animation - Enhanced */
+/* Green gradient text for the logo and highlights */
 .gradient-text {
-  background: linear-gradient(135deg, #6366F1, #8B5CF6, #EC4899, #F97316, #06B6D4);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #047857, #059669, #10B981);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 10s ease infinite;
+  color: #059669;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 50% 75%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 50% 25%; }
-}
-
-/* Fade in animations */
+/* Fade / reveal animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -360,11 +61,6 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes glow {
-  0%, 100% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5)); }
-  50% { filter: drop-shadow(0 0 16px rgba(139, 92, 246, 0.8)); }
-}
-
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
@@ -375,60 +71,35 @@ body {
   50% { transform: translateY(-10px); }
 }
 
-@keyframes gradientSlide {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Nouvelles animations */
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
 }
 
-/* Scroll reveal animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -439,58 +110,42 @@ body {
 
 @layer utilities {
   .card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
-    border: 1px solid rgba(99, 102, 241, 0.15);
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
     border-radius: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
   }
-  
+
   .card-hover {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
   }
 
-  .card-hover::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(135deg, transparent, rgba(99, 102, 241, 0.15), transparent);
-    transform: rotate(45deg);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .card-hover:hover::before {
-    left: 100%;
-  }
-
   .card-hover:hover {
-    transform: translateY(-6px) scale(1.01);
-    border-color: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+    transform: translateY(-4px);
+    border-color: rgba(5, 150, 105, 0.35);
+    box-shadow: 0 12px 32px rgba(5, 150, 105, 0.12);
   }
-  
+
   .btn-primary {
-    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    background: linear-gradient(135deg, #059669, #047857);
     color: white;
     border-radius: 14px;
     padding: 16px 32px;
     font-weight: 600;
     font-size: 16px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
   }
 
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 32px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 28px rgba(5, 150, 105, 0.35);
   }
 
   .btn-primary:active {
@@ -498,10 +153,9 @@ body {
   }
 
   .btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border: 2px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(12px);
+    background: #FFFFFF;
+    color: #0F172A;
+    border: 1px solid #E2E8F0;
     border-radius: 14px;
     padding: 14px 30px;
     font-weight: 600;
@@ -509,30 +163,23 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
   }
 
   .btn-secondary:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: rgba(99, 102, 241, 0.5);
+    background: #F0FDF4;
+    border-color: rgba(5, 150, 105, 0.4);
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.12);
   }
 
   .btn-secondary:active {
     transform: translateY(-1px);
   }
 
-  /* Animation pour les titres */
   .section-title {
     animation: fadeInUp 0.8s ease-out;
-  }
-
-  .gradient-bg {
-    position: absolute;
-    filter: blur(80px);
-    opacity: 0.3;
-    border-radius: 50%;
   }
 }
 
@@ -542,7 +189,6 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: 'kern' 1;
 }
 
-/* Smoother scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -552,8 +198,6 @@ section[id] {
   scroll-margin-top: 6rem;
 }
 
-/* Ajustement spécifique pour sections avec contenu en grille */
-/* Centrer visuellement sur le contenu global, pas sur le titre */
 section#matieres,
 section#temoignages {
   scroll-margin-top: -8rem;
@@ -561,90 +205,39 @@ section#temoignages {
 
 /* Selection styling */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
-  color: #ffffff;
+  background: rgba(5, 150, 105, 0.18);
+  color: #0F172A;
 }
 
-/* Enhanced focus states */
+/* Focus states */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.8);
+  outline: 2px solid rgba(5, 150, 105, 0.7);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
-/* Improved link hover states */
 a {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced image loading */
 img {
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
 }
 
-/* Subtle backdrop effects for overlays */
-.backdrop-enhanced {
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-}
-
-/* Optimisations TABLETTE globales (640px-1024px) */
-@media (min-width: 640px) and (max-width: 1024px) {
-  /* Réduire légèrement les blur coûteux sur tablette */
-  .backdrop-blur-xl {
-    backdrop-filter: blur(12px) !important;
-  }
-
-  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc sur TABLETTE */
-  /* Évite l'effet "rectangle blanc" du gradient transparent */
-  section > div > h2.bg-gradient-to-r,
-  section > div > h2[class*="bg-gradient"],
-  section > div > h2.text-transparent {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-clip: unset !important;
-    -webkit-background-clip: unset !important;
-  }
-}
-
-/* Optimisations MOBILE globales (<640px) */
+/* Mobile: trim transition durations */
 @media (max-width: 640px) {
-  /* Réduire les blur coûteux sur mobile */
-  .backdrop-blur-xl {
-    backdrop-filter: blur(8px) !important;
-  }
-
-  /* Désactiver certaines animations sur mobile */
-  .card-hover:hover {
-    transform: translateY(-3px) scale(1.005);
-  }
-
-  /* Optimiser les transitions */
   * {
     transition-duration: 0.2s !important;
   }
 
-  /* Améliorer la lisibilité du texte */
   body {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-
-  /* FIX CRITIQUE: Forcer les titres h2 de section en blanc sur MOBILE */
-  /* NE PAS affecter les spans .gradient-text dans le titre principal Hero */
-  section > div > h2.bg-gradient-to-r,
-  section > div > h2[class*="bg-gradient"],
-  section > div > h2.text-transparent {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-clip: unset !important;
-    -webkit-background-clip: unset !important;
-  }
 }
 
-/* Performance : réduire animations si batterie faible ou préférence utilisateur */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

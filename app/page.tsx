@@ -1,6 +1,73 @@
-import { redirect } from 'next/navigation'
-import profData from '@/data/prof.json'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import Hero from '@/components/Hero'
+import Services from '@/components/Services'
+import Method from '@/components/Method'
+import Contact from '@/components/Contact'
+import Temoignage from '@/components/Temoignage'
+import AnimatedBackground from '@/components/AnimatedBackground'
+import Navigation from '@/components/Navigation'
+import SmoothScroll from '@/components/SmoothScroll'
+import Footer from '@/components/Footer'
+
+interface ProfData {
+  nom: string
+  matieres: string[]
+  ville: string
+  accroche: string
+  email: string
+  whatsapp: string
+}
+
+function getProfData(): ProfData {
+  const filePath = join(process.cwd(), 'data', 'prof.json')
+  const fileContents = readFileSync(filePath, 'utf8')
+  return JSON.parse(fileContents)
+}
 
 export default function Home() {
-  redirect(`/${profData.slug}`)
+  const prof = getProfData()
+
+  // Données structurées Schema.org
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: prof.nom,
+    jobTitle: `Professeur particulier de ${prof.matieres.join(' et ')}`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: prof.ville,
+    },
+    email: prof.email,
+    telephone: `+${prof.whatsapp}`,
+    description: prof.accroche,
+    knowsAbout: prof.matieres,
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
+      <AnimatedBackground />
+      <Navigation />
+      <SmoothScroll />
+
+      <main className="min-h-screen relative">
+        <Hero nom={prof.nom} />
+
+        <Method />
+
+        <Services />
+
+        <Temoignage />
+
+        <Contact email={prof.email} whatsapp={prof.whatsapp} nom={prof.nom} />
+
+        <Footer nom={prof.nom} ville={prof.ville} />
+      </main>
+    </>
+  )
 }

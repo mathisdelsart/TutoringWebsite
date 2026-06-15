@@ -5,14 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import testimonialsData from '@/data/testimonials.json'
 import { useLanguage } from '@/lib/i18n'
 
-interface TemoignageProps {
-  temoignage?: {
-    texte: string
-    auteur: string
-  }
-}
-
-export default function Temoignage({ temoignage }: TemoignageProps) {
+export default function Temoignage() {
   const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -34,11 +27,12 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
     return () => window.removeEventListener('resize', updateItemsPerSlide)
   }, [])
 
-  // Author names/avatars stay as-is (proper nouns); text and role come from translations.
+  // Text and role come from translations; author is a proper noun unless an override exists (e.g. "Maman de Guido" → "Guido's mum").
   const testimonials = testimonialsData.map((item, i) => ({
     ...item,
     text: t.temoignages.items[i]?.text ?? item.text,
     role: t.temoignages.items[i]?.role ?? item.role,
+    author: t.temoignages.authorOverrides[item.author] ?? item.author,
   }))
 
   const maxSlides = Math.ceil(testimonials.length / itemsPerSlide)
@@ -69,7 +63,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
     <section id="temoignages" className="py-12 sm:py-16 lg:py-20 relative bg-gradient-to-b from-transparent to-primary/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.temoignages.title}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
@@ -96,13 +90,13 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
                     .slice(slideIndex * itemsPerSlide, slideIndex * itemsPerSlide + itemsPerSlide)
                     .map((testimonial, index) => (
                       <div key={index} className="card p-5 sm:p-6 lg:p-8 relative flex flex-col justify-between min-h-[280px] sm:min-h-[320px]">
-                        <div className="absolute top-4 sm:top-6 left-4 sm:left-6 text-4xl sm:text-5xl lg:text-6xl gradient-text opacity-50 leading-none -rotate-12">"</div>
+                        <div className="absolute top-4 sm:top-6 left-4 sm:left-6 text-4xl sm:text-5xl lg:text-6xl text-primary opacity-20 leading-none -rotate-12">"</div>
 
                         <div className="relative mt-6 sm:mt-8 mb-4 sm:mb-6">
-                          <p className="text-sm sm:text-base italic text-gray-300 leading-relaxed pb-4 sm:pb-6">
+                          <p className="text-sm sm:text-base italic text-slate-600 leading-relaxed pb-4 sm:pb-6">
                             {testimonial.text}
                           </p>
-                          <div className="absolute -bottom-2 sm:-bottom-4 right-0 text-4xl sm:text-5xl lg:text-6xl gradient-text opacity-50 leading-none rotate-[168deg] pointer-events-none">"</div>
+                          <div className="absolute -bottom-2 sm:-bottom-4 right-0 text-4xl sm:text-5xl lg:text-6xl text-primary opacity-20 leading-none rotate-[168deg] pointer-events-none">"</div>
                         </div>
 
                         <div className="flex items-center gap-2 sm:gap-3">
@@ -110,7 +104,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
                             {testimonial.avatar}
                           </div>
                           <div className="min-w-0">
-                            <h4 className="font-semibold text-white text-sm sm:text-base truncate">
+                            <h4 className="font-semibold text-slate-900 text-sm sm:text-base truncate">
                               {testimonial.author}
                             </h4>
                             <p className="text-xs text-textSecondary truncate">
