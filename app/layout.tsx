@@ -1,6 +1,7 @@
 import './globals.css'
 import { Outfit } from 'next/font/google'
 import profData from '@/data/prof.json'
+import Providers from '@/components/Providers'
 
 const outfit = Outfit({ subsets: ['latin'] })
 
@@ -39,7 +40,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }

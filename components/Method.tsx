@@ -5,39 +5,28 @@ interface MethodProps {
 }
 
 import { UserCog, ClipboardCheck, MessageCircle } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n'
 
 export default function Method({ methode }: MethodProps) {
+  const { t } = useLanguage()
 
-const whyChoose = [
-  {
-    title: 'Pédagogie personnalisée',
-    description: 'Chaque élève est unique. J’adapte mes séances et ma méthodologie à ton profil, tes objectifs et ton rythme d’apprentissage.',
-    gradient: 'from-purple-500 to-pink-600',
-    icon: <UserCog className="w-8 h-8 text-white" />
-  },
-  {
-    title: 'Exercices & corrections',
-    description: 'Je te propose des exercices adaptés à ton niveau selon tes besoins. Je prends le temps de corriger et d’expliquer chaque point pour t’aider à mieux comprendre et progresser.',
-    gradient: 'from-blue-500 to-cyan-600',
-    icon: <ClipboardCheck className="w-8 h-8 text-white" />
-  },
-  {
-    title: 'Disponible en dehors des cours',
-    description: 'En dehors des séances, je reste disponible pour de courtes questions, une vérification d’exercice ou une clarification rapide.',
-    gradient: 'from-green-500 to-emerald-600',
-    icon: <MessageCircle className="w-8 h-8 text-white" />
-  }
-]
+  const visuals = [
+    { gradient: 'from-purple-500 to-pink-600', icon: <UserCog className="w-8 h-8 text-white" /> },
+    { gradient: 'from-blue-500 to-cyan-600', icon: <ClipboardCheck className="w-8 h-8 text-white" /> },
+    { gradient: 'from-green-500 to-emerald-600', icon: <MessageCircle className="w-8 h-8 text-white" /> },
+  ]
+
+  const whyChoose = t.method.items.map((item, i) => ({ ...item, ...visuals[i] }))
 
   return (
     <section id="methode" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            Pourquoi me choisir ?
+            {t.method.title}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            Une approche personnalisée pour ta réussite
+            {t.method.subtitle}
           </p>
         </div>
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { assetPath } from '@/lib/assetPath'
+import { useLanguage } from '@/lib/i18n'
 
 interface HeroProps {
   nom: string
@@ -13,7 +14,8 @@ interface HeroProps {
   modalites: string[]
 }
 
-export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites }: HeroProps) {
+export default function Hero({ nom }: HeroProps) {
+  const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -28,15 +30,18 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-white mb-4 sm:mb-6">
-                Transforme tes <span className="gradient-text">difficultés</span> en <span className="gradient-text">réussites</span>
+                {t.hero.title.p1}
+                <span className="gradient-text">{t.hero.title.w1}</span>
+                {t.hero.title.p2}
+                <span className="gradient-text">{t.hero.title.w2}</span>
               </h1>
 
               <div className="space-y-2 sm:space-y-3 max-w-2xl mb-6 sm:mb-8">
                 <p className="text-base sm:text-lg lg:text-[17px] xl:text-lg text-gray-300 leading-relaxed">
-                  Ingénieur civil en Informatique & IA, passionné par l'enseignement.
+                  {t.hero.subtitle1}
                 </p>
                 <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed">
-                  Pédagogie moderne et personnalisée pour atteindre tes objectifs.
+                  {t.hero.subtitle2}
                 </p>
               </div>
             </div>
@@ -44,12 +49,12 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
             <div className="space-y-4 sm:space-y-6 lg:pr-4">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2">85+</div>
-                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wide font-semibold">Élèves accompagnés</div>
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2">100+</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wide font-semibold">{t.hero.statStudents}</div>
                 </div>
                 <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
                   <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2">+3</div>
-                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wide font-semibold">Années d'expérience</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wide font-semibold">{t.hero.statExperience}</div>
                 </div>
               </div>
 
@@ -58,9 +63,8 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                 <div className="relative px-4 sm:px-8 py-4 sm:py-5 rounded-2xl border border-primary/10 bg-gradient-to-br from-white/[0.02] to-transparent backdrop-blur-sm">
                   <p className="text-sm sm:text-base font-light italic text-gray-300 leading-relaxed tracking-wide text-center">
                     <span className="text-primary/60 text-lg sm:text-xl font-serif">"</span>
-                    L'excellence n'est pas une destination,
-                    <br className="hidden sm:inline" />
-                    c'est un <span className="text-white font-medium bg-gradient-to-r from-primary/20 to-accent/20 px-2 py-1 rounded">voyage continu</span>
+                    {t.hero.quote.part1}
+                    <span className="text-white font-medium bg-gradient-to-r from-primary/20 to-accent/20 px-2 py-1 rounded">{t.hero.quote.highlight}</span>
                     <span className="text-primary/60 text-lg sm:text-xl font-serif">"</span>
                   </p>
                 </div>
@@ -77,8 +81,8 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                     </svg>
                   </div>
                   <div className="text-center sm:text-left">
-                    <div className="text-white font-bold text-base sm:text-lg lg:text-xl">Réserver un cours</div>
-                    <div className="text-gray-400 text-xs sm:text-sm">Commence ta transformation</div>
+                    <div className="text-white font-bold text-base sm:text-lg lg:text-xl">{t.hero.ctaTitle}</div>
+                    <div className="text-gray-400 text-xs sm:text-sm">{t.hero.ctaSubtitle}</div>
                   </div>
                 </div>
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:text-white group-hover:translate-x-1 transition-all duration-300 mt-2 sm:mt-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +97,7 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
             <div className="card p-0 overflow-hidden">
               <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
-                  src={assetPath('/face_image.jpeg')}
+                  src={assetPath('/face_image.jpg')}
                   alt={nom}
                   width={400}
                   height={380}
@@ -113,8 +117,8 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                     </svg>
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">Modalités</div>
-                    <div className="text-xs sm:text-sm text-gray-300 font-medium break-words">{modalites.join(' • ')}</div>
+                    <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">{t.hero.labelModalites}</div>
+                    <div className="text-xs sm:text-sm text-gray-300 font-medium break-words">{t.hero.modalites.join(' • ')}</div>
                   </div>
                 </div>
 
@@ -137,10 +141,10 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
 
                   <div className="min-w-0">
                     <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">
-                      Disponibilité
+                      {t.hero.labelDisponibilite}
                     </div>
                     <div className="text-xs sm:text-sm text-gray-300 font-medium break-words">
-                      Très flexible (semaine & week-end)
+                      {t.hero.disponibilite}
                     </div>
                   </div>
                 </div>
@@ -158,8 +162,8 @@ export default function Hero({ nom, matieres, niveaux, zone, accroche, modalites
                     </svg>
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">Localisation</div>
-                    <div className="text-xs sm:text-sm text-white font-semibold group-hover:text-accent transition-colors truncate">{zone}</div>
+                    <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">{t.hero.labelLocalisation}</div>
+                    <div className="text-xs sm:text-sm text-white font-semibold group-hover:text-accent transition-colors truncate">{t.hero.zone}</div>
                   </div>
                 </a>
               </div>

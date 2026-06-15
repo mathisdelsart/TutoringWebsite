@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Mail, MessageCircle, Home, Video, Calculator, Lightbulb, Code } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n'
 
 interface ContactFormProps {
   email: string
@@ -10,6 +11,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     subjects: [] as string[],
@@ -25,30 +27,32 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
   const [step, setStep] = useState(1)
 
   const handleSubmit = async (platform: 'whatsapp' | 'email') => {
+    const m = t.form.msg
     const subjectsText = formData.subjects.join(' + ')
+    const periodText = formData.frequencyPeriod === 'semaine' ? m.periodWeek : m.periodMonth
     const frequencyText = formData.frequencyNumber
-      ? `${formData.frequencyNumber} fois / ${formData.frequencyPeriod}`
-      : 'À discuter ensemble'
+      ? m.freqValue.replace('{n}', formData.frequencyNumber).replace('{period}', periodText)
+      : m.freqToDiscuss
 
-    const modalityText = formData.location === 'domicile' ? 'À domicile' : 'En visio'
-    const courseTypeText = formData.courseType === 'suivi' ? 'Suivi régulier' : 'Cours ponctuels'
+    const modalityText = formData.location === 'domicile' ? m.modalityHome : m.modalityOnline
+    const courseTypeText = formData.courseType === 'suivi' ? m.courseTypeRegular : m.courseTypeOneoff
 
-    let message = `Bonjour ${nom},
+    let message = `${m.greeting.replace('{nom}', nom)}
 
-Je souhaiterais prendre des cours avec vous.
+${m.intro}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-ÉLÈVE
+${m.student}
 ${formData.name}
 
-MATIÈRE(S) SOUHAITÉE(S)
+${m.subjects}
 ${subjectsText}
 
-MODALITÉ
+${m.modality}
 ${modalityText}
 
-TYPE DE COURS
+${m.courseType}
 ${courseTypeText}`
 
     if (formData.reason) {
@@ -56,27 +60,27 @@ ${courseTypeText}`
     }
 
     if (formData.courseType === 'suivi') {
-      message += `\n\nFRÉQUENCE
+      message += `\n\n${m.frequency}
 ${frequencyText}`
     }
 
-    message += `\n\nDISPONIBILITÉS
+    message += `\n\n${m.availability}
 ${formData.availability}`
 
     if (formData.message) {
-      message += `\n\nMESSAGE
+      message += `\n\n${m.message}
 ${formData.message}`
     }
 
     message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Merci pour votre attention !`
+${m.closing}`
 
     if (platform === 'whatsapp') {
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'email') {
-      const emailSubject = encodeURIComponent(`Demande de cours - ${subjectsText}`)
+      const emailSubject = encodeURIComponent(m.emailSubject.replace('{subjects}', subjectsText))
       const emailBody = encodeURIComponent(message)
       window.location.href = `mailto:${email}?subject=${emailSubject}&body=${emailBody}`
     }
@@ -129,16 +133,17 @@ Merci pour votre attention !`
     })
   }
 
-  const subjects = [
-    { name: 'Maths', icon: Calculator, color: 'from-indigo-500 to-purple-600' },
-    { name: 'Physique', icon: Lightbulb, color: 'from-cyan-500 to-blue-600' },
-    { name: 'Python', icon: Code, color: 'from-emerald-500 to-teal-600' }
+  const subjectVisuals = [
+    { icon: Calculator, color: 'from-indigo-500 to-purple-600' },
+    { icon: Lightbulb, color: 'from-cyan-500 to-blue-600' },
+    { icon: Code, color: 'from-emerald-500 to-teal-600' }
   ]
+  const subjects = t.form.subjects.map((name, i) => ({ name, ...subjectVisuals[i] }))
 
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
-      <h3 className="text-2xl font-bold text-white mb-2">Demande de cours</h3>
-      <p className="text-gray-400 mb-6 text-sm">Remplis ce formulaire pour me contacter directement</p>
+      <h3 className="text-2xl font-bold text-white mb-2">{t.form.title}</h3>
+      <p className="text-gray-400 mb-6 text-sm">{t.form.subtitle}</p>
 
       {/* Progress bar */}
       <div className="flex gap-2 mb-8">
@@ -153,7 +158,7 @@ Merci pour votre attention !`
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Prénom de l'élève <span className="text-accent">*</span>
+                {t.form.labelName} <span className="text-accent">*</span>
               </label>
               <input
                 type="text"
@@ -161,13 +166,13 @@ Merci pour votre attention !`
                 value={formData.name}
                 onChange={(e) => updateFormData('name', e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
-                placeholder="Ton prénom complet"
+                placeholder={t.form.placeholderName}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-3">
-                Matière(s) souhaitée(s) <span className="text-accent">*</span>
+                {t.form.labelSubjects} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-3 gap-3">
                 {subjects.map((subject) => {
@@ -190,12 +195,12 @@ Merci pour votre attention !`
                   )
                 })}
               </div>
-              <p className="text-xs text-gray-500 mt-2">Tu peux sélectionner plusieurs matières</p>
+              <p className="text-xs text-gray-500 mt-2">{t.form.subjectsHint}</p>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-3">
-                Modalité <span className="text-accent">*</span>
+                {t.form.labelModalite} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -208,7 +213,7 @@ Merci pour votre attention !`
                   }`}
                 >
                   <Home className={`w-6 h-6 ${formData.location === 'domicile' ? 'text-primary' : 'text-gray-400'}`} />
-                  <div className="text-sm font-medium">À domicile</div>
+                  <div className="text-sm font-medium">{t.form.optHome}</div>
                 </button>
                 <button
                   type="button"
@@ -220,7 +225,7 @@ Merci pour votre attention !`
                   }`}
                 >
                   <Video className={`w-6 h-6 ${formData.location === 'visio' ? 'text-accent' : 'text-gray-400'}`} />
-                  <div className="text-sm font-medium">En visio</div>
+                  <div className="text-sm font-medium">{t.form.optOnline}</div>
                 </button>
               </div>
             </div>
@@ -231,7 +236,7 @@ Merci pour votre attention !`
               disabled={!formData.name || formData.subjects.length === 0}
               className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Continuer
+              {t.form.btnContinue}
             </button>
           </div>
         )}
@@ -241,7 +246,7 @@ Merci pour votre attention !`
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-3">
-                Type de cours <span className="text-accent">*</span>
+                {t.form.labelCourseType} <span className="text-accent">*</span>
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -253,8 +258,8 @@ Merci pour votre attention !`
                       : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
                   }`}
                 >
-                  <div className="text-lg font-semibold mb-1">Suivi régulier</div>
-                  <div className="text-xs text-gray-400">Pour progresser durablement</div>
+                  <div className="text-lg font-semibold mb-1">{t.form.courseRegularTitle}</div>
+                  <div className="text-xs text-gray-400">{t.form.courseRegularDesc}</div>
                 </button>
                 <button
                   type="button"
@@ -265,18 +270,18 @@ Merci pour votre attention !`
                       : 'border-primary/30 bg-white/5 text-gray-300 hover:border-primary/50'
                   }`}
                 >
-                  <div className="text-lg font-semibold mb-1">Cours ponctuel</div>
-                  <div className="text-xs text-gray-400">Pour une aide ciblée</div>
+                  <div className="text-lg font-semibold mb-1">{t.form.courseOneoffTitle}</div>
+                  <div className="text-xs text-gray-400">{t.form.courseOneoffDesc}</div>
                 </button>
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-3">
-                Raison (optionnel)
+                {t.form.labelReason}
               </label>
               <div className="grid grid-cols-2 gap-3">
-                {['Examen important', 'Interrogation', 'Remise à niveau', 'Autre'].map((r) => (
+                {t.form.reasons.map((r) => (
                   <button
                     key={r}
                     type="button"
@@ -296,7 +301,7 @@ Merci pour votre attention !`
             {formData.courseType === 'suivi' && (
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-3">
-                  Fréquence souhaitée (optionnel)
+                  {t.form.labelFrequency}
                 </label>
                 <div className="card p-3 sm:p-4 bg-white/5 border-primary/20">
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
@@ -310,7 +315,7 @@ Merci pour votre attention !`
                       placeholder="2"
                     />
                     <span className="hidden sm:inline text-gray-300 font-medium">×</span>
-                    <span className="hidden sm:inline text-gray-400 text-sm">par</span>
+                    <span className="hidden sm:inline text-gray-400 text-sm">{t.form.freqPer}</span>
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <button
                         type="button"
@@ -321,7 +326,7 @@ Merci pour votre attention !`
                             : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
                         }`}
                       >
-                        Semaine
+                        {t.form.freqWeek}
                       </button>
                       <button
                         type="button"
@@ -332,11 +337,11 @@ Merci pour votre attention !`
                             : 'border-primary/30 bg-white/5 text-gray-400 hover:border-primary/50'
                         }`}
                       >
-                        Mois
+                        {t.form.freqMonth}
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-2 sm:mt-3 text-center">Laissez vide pour discuter ensemble de la fréquence</p>
+                  <p className="text-xs text-gray-500 mt-2 sm:mt-3 text-center">{t.form.freqHint}</p>
                 </div>
               </div>
             )}
@@ -347,14 +352,14 @@ Merci pour votre attention !`
                 onClick={() => setStep(1)}
                 className="btn-secondary flex-1"
               >
-                Retour
+                {t.form.btnBack}
               </button>
               <button
                 type="button"
                 onClick={() => setStep(3)}
                 className="btn-primary flex-1"
               >
-                Continuer
+                {t.form.btnContinue}
               </button>
             </div>
           </div>
@@ -365,7 +370,7 @@ Merci pour votre attention !`
           <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Tes disponibilités <span className="text-accent">*</span>
+                {t.form.labelAvailability} <span className="text-accent">*</span>
               </label>
               <input
                 type="text"
@@ -373,25 +378,25 @@ Merci pour votre attention !`
                 value={formData.availability}
                 onChange={(e) => updateFormData('availability', e.target.value)}
                 className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all"
-                placeholder="Ex: Lundi et mercredi soir, week-end"
+                placeholder={t.form.placeholderAvailability}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Message complémentaire (optionnel)
+                {t.form.labelMessage}
               </label>
               <textarea
                 value={formData.message}
                 onChange={(e) => updateFormData('message', e.target.value)}
                 rows={3}
                 className="w-full px-4 py-3 bg-white/5 border border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500 transition-all resize-none"
-                placeholder="Des précisions supplémentaires..."
+                placeholder={t.form.placeholderMessage}
               />
             </div>
 
             <div className="pt-4 border-t border-primary/20">
-              <p className="text-sm text-gray-400 mb-4">Choisis ton moyen de contact :</p>
+              <p className="text-sm text-gray-400 mb-4">{t.form.chooseContact}</p>
 
               <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
                 <button
@@ -402,7 +407,7 @@ Merci pour votre attention !`
                 >
                   <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
-                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">Réponse rapide</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.whatsappDesc}</span>
                 </button>
 
                 <button
@@ -413,7 +418,7 @@ Merci pour votre attention !`
                 >
                   <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">Email</span>
-                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">Réponse sous 24h</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.emailDesc}</span>
                 </button>
               </div>
 
@@ -422,7 +427,7 @@ Merci pour votre attention !`
                 onClick={() => setStep(2)}
                 className="w-full btn-secondary mt-4"
               >
-                Retour
+                {t.form.btnBack}
               </button>
             </div>
           </div>

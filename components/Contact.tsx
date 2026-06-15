@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Mail, MessageCircle, MessagesSquare } from 'lucide-react'
 import ContactForm from './ContactForm'
+import { useLanguage } from '@/lib/i18n'
 
 interface ContactProps {
   email: string
@@ -14,9 +15,11 @@ interface ContactProps {
 }
 
 export default function Contact({ email, whatsapp, nom, zone, modalites, disponibilites }: ContactProps) {
+  const { t } = useLanguage()
   const [showForm, setShowForm] = useState(false)
-  const whatsappLink = `https://wa.me/${whatsapp}?text=Bonjour ${nom}, je souhaiterais prendre des cours avec vous.`
-  const emailLink = `mailto:${email}?subject=Demande de cours particuliers`
+  const whatsappText = t.contact.directWhatsappText.replace('{nom}', nom)
+  const whatsappLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappText)}`
+  const emailLink = `mailto:${email}?subject=${encodeURIComponent(t.contact.directEmailSubject)}`
 
   const contactMethods = [
     {
@@ -27,7 +30,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
       color: 'from-green-500 to-emerald-600',
       bgColor: 'bg-green-500/10',
       borderColor: 'border-green-500/30',
-      description: 'Réponse rapide'
+      description: t.contact.whatsappDesc
     },
     {
       icon: <Mail />,
@@ -37,7 +40,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-500/10',
       borderColor: 'border-blue-500/30',
-      description: 'Réponse sous 24h'
+      description: t.contact.emailDesc
     },
   ]
 
@@ -46,10 +49,10 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            Contacte-moi
+            {t.contact.title}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto mb-4 sm:mb-6 px-4">
-            Prêt à transformer tes résultats ? Parlons-en !
+            {t.contact.subtitle}
           </p>
 
           {/* Toggle buttons */}
@@ -64,7 +67,7 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
                 }`}
               >
                 <Mail className="w-4 h-4" />
-                Formulaire de demande
+                {t.contact.tabForm}
               </button>
               <button
                 onClick={() => setShowForm(false)}
@@ -75,10 +78,10 @@ export default function Contact({ email, whatsapp, nom, zone, modalites, disponi
                 }`}
               >
                 <MessageCircle className="w-4 h-4" />
-                Contact direct
+                {t.contact.tabDirect}
               </button>
             </div>
-            <p className="text-xs text-gray-500 italic px-4 text-center">Le formulaire de demande est à privilégier pour un premier contact</p>
+            <p className="text-xs text-gray-500 italic px-4 text-center">{t.contact.tabHint}</p>
           </div>
         </div>
 

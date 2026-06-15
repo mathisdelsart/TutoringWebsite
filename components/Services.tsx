@@ -1,67 +1,46 @@
 'use client'
 
+import { useLanguage } from '@/lib/i18n'
+
 interface ServicesProps {
   services: string[]
 }
 
 export default function Services({ services }: ServicesProps) {
-  const subjects = [
+  const { t } = useLanguage()
+
+  const visuals = [
     {
-      title: 'Mathématiques',
-      levels: '1re → 6e Secondaire',
       levelBadge: '1-6',
-      topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie', 'Statistiques'],
       gradient: 'from-indigo-400 via-purple-500 to-pink-500',
       borderGradient: 'from-indigo-500 to-pink-500',
       glowColor: 'indigo',
-      benefits: [
-        'Maîtrise approfondie du programme officiel',
-        'Méthodologie personnalisée selon le niveau',
-        'Préparation efficace aux évaluations',
-        'Explications claires, structurées et visuelles'
-      ]
     },
     {
-      title: 'Physique',
-      levels: '3e → 6e Secondaire',
       levelBadge: '3-6',
-      topics: ['Électricité', 'Mécanique', 'Optique', 'Ondes', 'Thermodynamique'],
       gradient: 'from-cyan-400 via-blue-500 to-indigo-500',
       borderGradient: 'from-cyan-500 to-indigo-500',
       glowColor: 'cyan',
-      benefits: [
-        'Maîtrise approfondie du programme officiel',
-        'Approche concrète par exemples réels',
-        'Préparation ciblée aux évaluations',
-        'Concepts complexes expliqués simplement'
-      ]
     },
     {
-      title: 'Programmation Python',
-      levels: 'Niveau Débutants',
       levelBadge: 'Py',
-      topics: ['Bases', 'Projets', 'Game Dev', 'Algorithmes', 'Logique'],
       gradient: 'from-emerald-400 via-teal-500 to-cyan-500',
       borderGradient: 'from-emerald-500 to-cyan-500',
       glowColor: 'emerald',
-      benefits: [
-        'De zéro aux projets concrets',
-        'Apprentissage ludique, progressif et pratique',
-        'Compréhension théorique des concepts clés',
-        'Compétence clé recherchée sur le marché'
-      ]
-    }
+    },
   ]
+
+  const subjects = t.services.subjects.map((subject, i) => ({ ...subject, ...visuals[i] }))
 
   return (
     <section id="matieres" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            Mes Spécialités
+            {t.services.title}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            Maths, Physique & Programmation • Un accompagnement complet et sur-mesure
+            {t.services.subtitle}
           </p>
         </div>
 
@@ -137,7 +116,7 @@ export default function Services({ services }: ServicesProps) {
 
                     {/* Ellipsis indicator */}
                     <span className="px-2 py-1 sm:py-1.5 text-[10px] sm:text-xs italic text-white/50 select-none">
-                      … et bien plus
+                      {t.services.ellipsis}
                     </span>
                   </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import testimonialsData from '@/data/testimonials.json'
+import { useLanguage } from '@/lib/i18n'
 
 interface TemoignageProps {
   temoignage?: {
@@ -12,6 +13,7 @@ interface TemoignageProps {
 }
 
 export default function Temoignage({ temoignage }: TemoignageProps) {
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [itemsPerSlide, setItemsPerSlide] = useState(3)
@@ -32,7 +34,12 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
     return () => window.removeEventListener('resize', updateItemsPerSlide)
   }, [])
 
-  const testimonials = testimonialsData
+  // Author names/avatars stay as-is (proper nouns); text and role come from translations.
+  const testimonials = testimonialsData.map((item, i) => ({
+    ...item,
+    text: t.temoignages.items[i]?.text ?? item.text,
+    role: t.temoignages.items[i]?.role ?? item.role,
+  }))
 
   const maxSlides = Math.ceil(testimonials.length / itemsPerSlide)
 
@@ -63,10 +70,10 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            Témoignages
+            {t.temoignages.title}
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            La réussite de mes élèves parle d'elle-même
+            {t.temoignages.subtitle}
           </p>
         </div>
 
@@ -124,7 +131,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
           <button
             onClick={prevSlide}
             className="absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm text-white z-10 shadow-lg"
-            aria-label="Témoignage précédent"
+            aria-label={t.temoignages.prevLabel}
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8" strokeWidth={2.5} />
           </button>
@@ -132,7 +139,7 @@ export default function Temoignage({ temoignage }: TemoignageProps) {
           <button
             onClick={nextSlide}
             className="absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-primary/80 hover:bg-primary rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm text-white z-10 shadow-lg"
-            aria-label="Témoignage suivant"
+            aria-label={t.temoignages.nextLabel}
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8" strokeWidth={2.5} />
           </button>

@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Sigma, Pi, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n'
 
 export default function Navigation() {
+  const { lang, setLang, t } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -15,17 +17,38 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const menuItems = [
-    ['Accueil', 'accueil'],
-    ['Méthode', 'methode'],
-    ['Matières', 'matieres'],
-    ['Témoignages', 'temoignages'],
-    ['Contact', 'contact']
-  ]
+  const menuItems = t.nav.items
 
   const handleMenuClick = () => {
     setIsMobileMenuOpen(false)
   }
+
+  const LangToggle = () => (
+    <div
+      className="flex items-center rounded-lg border border-primary/30 overflow-hidden text-xs sm:text-sm font-bold"
+      role="group"
+      aria-label={t.nav.toggleLabel}
+    >
+      <button
+        onClick={() => setLang('fr')}
+        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
+          lang === 'fr' ? 'bg-primary text-white' : 'text-gray-300 hover:bg-primary/10'
+        }`}
+        aria-pressed={lang === 'fr'}
+      >
+        FR
+      </button>
+      <button
+        onClick={() => setLang('en')}
+        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
+          lang === 'en' ? 'bg-primary text-white' : 'text-gray-300 hover:bg-primary/10'
+        }`}
+        aria-pressed={lang === 'en'}
+      >
+        EN
+      </button>
+    </div>
+  )
 
   return (
     <>
@@ -34,51 +57,46 @@ export default function Navigation() {
       } backdrop-blur-xl border-b border-primary/20`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4 sm:py-5 lg:py-6">
           {/* Logo */}
-          <div className="flex items-center gap-2 sm:gap-3 group">
-            <div className="relative hidden sm:block">
-              <Sigma className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-primary group-hover:text-accent transition-colors duration-300" strokeWidth={2.5} />
-              <div className="absolute inset-0 blur-xl bg-primary/30 group-hover:bg-accent/30 transition-colors duration-300" />
-            </div>
+          <a href="#accueil" className="flex items-center group">
             <div className="font-display text-base sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight">
-              <span className="gradient-text">MATHS</span>
-              <span className="text-white/40 mx-1 sm:mx-2">×</span>
-              <span className="gradient-text">PHYSIQUE</span>
+              <span className="gradient-text">{t.nav.brand}</span>
             </div>
-            <div className="relative hidden sm:block">
-              <Pi className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-accent group-hover:text-primary transition-colors duration-300" strokeWidth={2.5} />
-              <div className="absolute inset-0 blur-xl bg-accent/30 group-hover:bg-primary/30 transition-colors duration-300" />
-            </div>
+          </a>
+
+          {/* Right side: menu (desktop) + language toggle + mobile menu button */}
+          <div className="flex items-center gap-4 lg:gap-8 xl:gap-12">
+            {/* Desktop Menu */}
+            <ul className="hidden lg:flex gap-8 xl:gap-12 list-none">
+              {menuItems.map(([label, id]) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className="text-white text-sm xl:text-base font-medium transition-all duration-300 relative py-2 hover:text-accent hover:[text-shadow:0_0_20px_rgba(236,72,153,0.5)]
+                      before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-0.5
+                      before:bg-gradient-to-r before:from-primary before:to-accent before:transition-all before:duration-300
+                      hover:before:w-full"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <LangToggle />
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-white" />
+              ) : (
+                <Menu className="w-6 h-6 text-white" />
+              )}
+            </button>
           </div>
-
-          {/* Desktop Menu */}
-          <ul className="hidden lg:flex gap-8 xl:gap-12 list-none">
-            {menuItems.map(([label, id]) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className="text-white text-sm xl:text-base font-medium transition-all duration-300 relative py-2 hover:text-accent hover:[text-shadow:0_0_20px_rgba(236,72,153,0.5)]
-                    before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-0.5
-                    before:bg-gradient-to-r before:from-primary before:to-accent before:transition-all before:duration-300
-                    hover:before:w-full"
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-white" />
-            ) : (
-              <Menu className="w-6 h-6 text-white" />
-            )}
-          </button>
         </div>
       </nav>
 

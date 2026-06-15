@@ -8,6 +8,7 @@ import Temoignage from '@/components/Temoignage'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import Navigation from '@/components/Navigation'
 import SmoothScroll from '@/components/SmoothScroll'
+import Footer from '@/components/Footer'
 
 interface ProfData {
   slug: string
@@ -97,23 +98,7 @@ export default function ProfPage({ params }: { params: { slug: string } }) {
           disponibilites={prof.disponibilites}
         />
         
-        <footer className="relative py-20 border-t border-primary/20">
-          <div className="max-w-[1400px] mx-auto px-8 text-center">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-            
-            <h3 className="text-5xl font-extrabold mb-6 bg-gradient-to-r from-white via-primary to-accent bg-clip-text text-transparent">
-              Le succès commence par une décision
-            </h3>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Chaque grand parcours commence par un premier pas. <br/>
-              <span className="gradient-text font-semibold">Ta réussite t'attend.</span>
-            </p>
-            
-            <p className="text-textSecondary text-sm mt-12 pt-8 border-t border-primary/10">
-              © {new Date().getFullYear()} <span className="font-medium text-white">{prof.nom}</span> • Professeur particulier à {prof.ville}
-            </p>
-          </div>
-        </footer>
+        <Footer nom={prof.nom} ville={prof.ville} />
       </main>
     </>
   )
