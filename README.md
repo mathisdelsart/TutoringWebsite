@@ -4,7 +4,7 @@
 
 **A bilingual (FR / EN), responsive single-page website for a private tutor — built with Next.js and statically deployed to GitHub Pages.**
 
-Website: **[mathisdelsart.github.io/TutoringWebsite](https://mathisdelsart.github.io/TutoringWebsite)**
+Website: **[mathisdelsart.github.io/private-tutoring](https://mathisdelsart.github.io/private-tutoring)**
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
@@ -43,8 +43,8 @@ Website: **[mathisdelsart.github.io/TutoringWebsite](https://mathisdelsart.githu
 
 ```bash
 # Clone and install
-git clone https://github.com/mathisdelsart/TutoringWebsite.git
-cd TutoringWebsite
+git clone https://github.com/mathisdelsart/private-tutoring.git
+cd private-tutoring
 npm install
 
 # Run the dev server
