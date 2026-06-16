@@ -36,11 +36,11 @@ export default function Method() {
                 className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 md:p-7 xl:p-8 ${color.bg} border-2 ${color.border} hover:shadow-2xl transition-all duration-400 sm:hover:scale-105 group`}
               >
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-                <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform group-hover:rotate-6 transition-all duration-300`}>
+                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform group-hover:rotate-6 transition-all duration-300`}>
                   {item.icon}
                 </div>
-                <h4 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-slate-900">{item.title}</h4>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{item.description}</p>
+                <h4 className="relative z-10 text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-slate-900">{item.title}</h4>
+                <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">{item.description}</p>
               </div>
             )
           })}
