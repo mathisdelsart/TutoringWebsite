@@ -1,6 +1,6 @@
 <div align="center">
 
-# Cours Particuliers — Tutoring Website
+# Cours Particuliers — Private Tutoring Website
 
 **A bilingual (FR / EN), responsive single-page website for a private tutor — built with Next.js and statically deployed to GitHub Pages.**
 
@@ -15,7 +15,7 @@ Website: **[mathisdelsart.github.io/private-tutoring](https://mathisdelsart.gith
 
 ---
 
-![Tutoring Website](public/app-image.png)
+![Private Tutoring Website](public/app-image.png)
 
 ---
 
